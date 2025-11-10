@@ -205,6 +205,7 @@
             messageDiv.className = 'message';
             messageDiv.innerHTML = 'Mengirim data dan mengunggah file... **Mohon tunggu hingga selesai**';
 
+            // Panggilan ke Code.gs TANPA perlu menggunakan URL /exec
             google.script.run
                 .withSuccessHandler(onSuccess)
                 .withFailureHandler(onError)
