@@ -1,121 +1,214 @@
 <!doctype html>
 <html lang="id">
- <head>
-    <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit Soal PSAS</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script> 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    /* ... (SEMUA CSS ANDA SAMA) ... */
-  </style>
- </head>
- <body>
-  <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-   <div class="main-container" style="max-width: 640px; margin: 0 auto; padding: 32px 20px;">
-    <div class="header-card card" style="background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);"></div>
-    
-    <div class="form-card card" style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
-     <form id="submission-form">
-            <div style="margin-bottom: 24px;"><label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Nama Guru <span style="color: #e53e3e;">*</span></label> <input type="text" id="nama-guru" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;"></div>
-      <div style="margin-bottom: 24px;"><label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Mata Pelajaran <span style="color: #e53e3e;">*</span></label> <input type="text" id="mata-pelajaran" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;"></div>
-      <div style="margin-bottom: 24px;"><label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Kelas <span style="color: #e53e3e;">*</span></label> <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;"></div>
-      <div style="margin-bottom: 24px;"><label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Jumlah Soal <span style="color: #e53e3e;">*</span></label> <input type="number" id="jumlah-soal" required min="1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;"></div>
-      <div style="margin-bottom: 24px;"><label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Link Soal PSAS <span style="color: #e53e3e;">*</span></label> <input type="url" id="link-soal" required placeholder="https://..." class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;"></div>
-      <div style="margin-bottom: 24px;"><label for="file-kisi-kisi" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Upload Kisi-Kisi Soal <span style="color: #e53e3e;">*</span></label><div style="position: relative;"><input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; cursor: pointer;"><p id="file-name-display" style="margin: 8px 0 0 0; font-size: 13px; color: #718096; font-style: italic;">Belum ada file dipilih</p></div></div>
-      <div style="margin-bottom: 28px;"><label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Catatan (Opsional)</label> <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; resize: vertical; background: #f7fafc;"></textarea></div>
-      <button type="submit" id="submit-btn" class="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); letter-spacing: 0.3px;"> <span id="submit-text">Submit Soal</span> <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span> </button>
-     </form>
-           <div id="success-message" style="display: none; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;">
-      <p id="success-text" style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">✅</span> 
-         <span>Terima kasih! Soal Anda telah berhasil disubmit.</span>
-       </p>
-     </div>
-    </div>
-    <div style="text-align: center; margin-top: 32px; color: white; font-size: 14px; opacity: 0.95; font-weight: 500;"><p style="margin: 0;">© 2024 SMK Negeri Bojonggambir</p></div>
-   </div>
-  </div>
-  <script>
-    // ... (SEMUA KODE 'defaultConfig', 'onConfigChange', 'elementSdk.init' SAMA) ...
-    const defaultConfig = { app_title: "Submit Soal PSAS", school_name: "SMK Negeri Bojonggambir", submit_button_text: "Submit Soal", success_message: "Terima kasih! Soal Anda telah berhasil disubmit.", background_color: "#667eea", surface_color: "#ffffff", text_color: "#1a202c", primary_action_color: "#667eea", secondary_action_color: "#764ba2", font_family: "system-ui", font_size: 16 };
-    const dataHandler = { onDataChanged(data) {} };
-    async function onConfigChange(config) { /* ... (Fungsi ini sama, tidak perlu diubah) ... */ }
-    if (window.elementSdk) { /* ... (Blok ini sama, tidak perlu diubah) ... */ }
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Soal PSAS</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* CSS Anda akan ada di sini jika ada, tetapi kode ini menggunakan inline styles */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px;">
+    <div class="main-container" style="max-width: 640px; margin: 0 auto; padding: 32px 20px;">
+      
+      <div class="header-card card" style="background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+        <h1 id="app-title-h1" style="font-size: 28px; font-weight: 800; color: #2d3748; text-align: center; margin: 0;">Submit Soal PSAS</h1>
+        <p id="school-name-p" style="font-size: 16px; color: #718096; text-align: center; margin-top: 8px;">SMK Negeri Bojonggambir</p>
+      </div>
+      
+      <div class="form-card card" style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+        <form id="submission-form">
+          
+          <div style="margin-bottom: 24px;">
+            <label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Nama Guru <span style="color: #e53e3e;">*</span></label>
+            <input type="text" id="nama-guru" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Mata Pelajaran <span style="color: #e53e3e;">*</span></label>
+            <input type="text" id="mata-pelajaran" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Kelas <span style="color: #e53e3e;">*</span></label>
+            <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Jumlah Soal <span style="color: #e53e3e;">*</span></label>
+            <input type="number" id="jumlah-soal" required min="1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Link Soal PSAS <span style="color: #e53e3e;">*</span></label>
+            <input type="url" id="link-soal" required placeholder="https://..." class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+          </div>
+          
+          <div style="margin-bottom: 24px;">
+            <label for="file-kisi-kisi" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Upload Kisi-Kisi Soal <span style="color: #e53e3e;">*</span></label>
+            <div style="position: relative;">
+              <input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; cursor: pointer; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';">
+              <p id="file-name-display" style="margin: 8px 0 0 0; font-size: 13px; color: #718096; font-style: italic;">Belum ada file dipilih</p>
+            </div>
+          </div>
+          
+          <div style="margin-bottom: 28px;">
+            <label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Catatan (Opsional)</label>
+            <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; resize: vertical; background: #f7fafc; transition: all 0.3s ease;" onfocus="this.style.borderColor='#667eea'; this.style.boxShadow='0 0 0 3px rgba(102,126,234,0.2)'; this.style.background='white';" onblur="this.style.borderColor='#e2e8f0'; this.style.boxShadow='none'; this.style.background='#f7fafc';"></textarea>
+          </div>
+          
+          <button type="submit" id="submit-btn" class="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); letter-spacing: 0.3px; transition: all 0.3s ease;" onmouseover="this.style.boxShadow='0 8px 25px rgba(102,126,234,0.6)';" onmouseout="this.style.boxShadow='0 6px 20px rgba(102,126,234,0.4)';">
+            <span id="submit-text">Submit Soal</span>
+            <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span>
+          </button>
+        </form>
+        
+        <div id="success-message" style="display: none; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;">
+          <p id="success-text" style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;">
+            <span style="font-size: 18px;">✅</span>
+            <span>Terima kasih! Soal Anda telah berhasil disubmit.</span>
+          </p>
+        </div>
+      </div>
+      
+      <div style="text-align: center; margin-top: 32px; color: white; font-size: 14px; opacity: 0.95; font-weight: 500;">
+        <p id="footer-text" style="margin: 0;">© 2024 SMK Negeri Bojonggambir</p>
+      </div>
+      
+    </div>
+  </div>
+
+  <script>
+    // --- SDK CONFIG (Biarkan default) ---
+    const defaultConfig = { app_title: "Submit Soal PSAS", school_name: "SMK Negeri Bojonggambir", submit_button_text: "Submit Soal", success_message: "Terima kasih! Soal Anda telah berhasil disubmit.", background_color: "#667eea", surface_color: "#ffffff", text_color: "#1a202c", primary_action_color: "#667eea", secondary_action_color: "#764ba2", font_family: "system-ui", font_size: 16 };
+    const dataHandler = { onDataChanged(data) {} };
+    async function onConfigChange(config) {
+        const conf = config || defaultConfig;
+        document.title = conf.app_title;
+        document.getElementById('app-title-h1').textContent = conf.app_title;
+        document.getElementById('school-name-p').textContent = conf.school_name;
+        document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${conf.school_name}`;
+        document.getElementById('submit-text').textContent = conf.submit_button_text;
+        document.getElementById('success-text').querySelector('span:last-child').textContent = conf.success_message;
+        
+        // Dynamic styling (contoh)
+        document.querySelector('.container').style.background = `linear-gradient(135deg, ${conf.primary_action_color} 0%, ${conf.secondary_action_color} 100%)`;
+        document.querySelector('.form-card').style.background = conf.surface_color;
+        document.getElementById('submit-btn').style.background = `linear-gradient(135deg, ${conf.primary_action_color} 0%, ${conf.secondary_action_color} 100%)`;
+    }
+    if (window.elementSdk) {
+        window.elementSdk.init(defaultConfig, dataHandler, onConfigChange);
+    } else {
+        onConfigChange(defaultConfig);
+    }
+    // --- END SDK CONFIG ---
+
 
     /**
-     * Fungsi helper untuk mengubah file menjadi string Base64. (Sama)
+     * Fungsi helper untuk mengubah file menjadi string Base64.
      */
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
         reader.readAsDataURL(file);
         reader.onload = () => {
-          resolve(reader.result.split(',')[1]); 
+          resolve(reader.result.split(',')[1]); // Hanya ambil data Base64-nya
         };
         reader.onerror = error => reject(error);
       });
     }
 
-    async function initializeApp() {
-      // ... (File input handler sama) ...
-      const fileInput = document.getElementById('file-kisi-kisi');
-      const fileNameDisplay = document.getElementById('file-name-display');
-      fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          fileNameDisplay.textContent = `File dipilih: ${file.name}`;
-          fileNameDisplay.style.color = '#48bb78';
-          fileNameDisplay.style.fontWeight = '600';
-        } else {
-          fileNameDisplay.textContent = 'Belum ada file dipilih';
-          fileNameDisplay.style.color = '#718096';
-          fileNameDisplay.style.fontWeight = 'normal';
-        }
-      });
+    /**
+     * Fungsi untuk menampilkan pesan error kustom di dalam form
+     */
+    function showCustomAlert(form, message, type = 'error') {
+        // Hapus alert lama jika ada
+        form.querySelectorAll('div[data-alert="custom"]').forEach(el => el.remove());
 
-      // ================================================================
-      // LOGIKA SUBMIT - INI BAGIAN PENTING
-      // ================================================================
-      const form = document.getElementById('submission-form');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault(); 
+        const alertDiv = document.createElement('div');
+        alertDiv.setAttribute('data-alert', 'custom');
+        let cssText, innerHTML;
 
-        // !!! GANTI DENGAN URL WEB APP ANDA !!!
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec"; 
-        
-        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DARI_LANGKAH_DEPLOY") {
-           alert("Peringatan: URL Google Apps Script belum diatur di file HTML!");
-           const errorDiv = document.createElement('div');
-           errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
-           errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Error: URL Apps Script belum diatur di dalam kode.</span></p>`;
-           form.appendChild(errorDiv);
-           setTimeout(() => errorDiv.remove(), 5000);
-           return;
+        if (type === 'error') {
+            cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
+            innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>${message}</span></p>`;
+        } else { // type === 'success'
+            cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;';
+            innerHTML = `<p style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">✅</span> <span>${message}</span></p>`;
         }
 
-        const submitBtn = document.getElementById('submit-btn');
-        const submitText = document.getElementById('submit-text');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const successMessage = document.getElementById('success-message');
+        alertDiv.style.cssText = cssText;
+        alertDiv.innerHTML = innerHTML;
+        form.appendChild(alertDiv);
 
-        const fileInput = document.getElementById('file-kisi-kisi');
-        const file = fileInput.files[0];
+        // Hapus otomatis setelah beberapa detik
+        setTimeout(() => alertDiv.remove(), 6000);
+    }
 
-        if (!file) {
-          const errorDiv = document.createElement('div');
-          errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
-          errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Silakan pilih file kisi-kisi terlebih dahulu.</span></p>`;
-          form.appendChild(errorDiv);
-          setTimeout(() => errorDiv.remove(), 5000);
-          return;
-        }
 
-        submitBtn.disabled = true;
-        submitText.style.display = 'none';
-        loadingSpinner.style.display = 'inline';
+    async function initializeApp() {
+      // --- File input handler ---
+      const fileInput = document.getElementById('file-kisi-kisi');
+      const fileNameDisplay = document.getElementById('file-name-display');
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          fileNameDisplay.textContent = `File dipilih: ${file.name}`;
+          fileNameDisplay.style.color = '#48bb78';
+          fileNameDisplay.style.fontWeight = '600';
+        } else {
+          fileNameDisplay.textContent = 'Belum ada file dipilih';
+          fileNameDisplay.style.color = '#718096';
+          fileNameDisplay.style.fontWeight = 'normal';
+        }
+      });
+
+      // --- Logika Submit Form ---
+      const form = document.getElementById('submission-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        // 
+        // !!! GANTI DENGAN URL WEB APP ANDA YANG SUDAH DI-DEPLOY !!!
+        //
+        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec";
+
+        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DARI_LANGKAH_DEPLOY" || GAS_WEB_APP_URL.includes("AKfycb...")) {
+            // Cek jika URL masih placeholder atau contoh yang sama
+            if (GAS_WEB_APP_URL !== "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec") {
+                alert("Peringatan: URL Google Apps Script belum diatur di file HTML!");
+                showCustomAlert(form, "Error: URL Apps Script belum diatur di dalam kode.", 'error');
+                return;
+            }
+        }
+
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+        const successMessage = document.getElementById('success-message');
+
+        const file = fileInput.files[0];
+
+        if (!file) {
+          showCustomAlert(form, 'Silakan pilih file kisi-kisi terlebih dahulu.', 'error');
+          return;
+        }
+
+        // --- Mulai proses loading ---
+        submitBtn.disabled = true;
+        submitText.style.display = 'none';
+        loadingSpinner.style.display = 'inline';
         
-        form.querySelectorAll('div[style*="animation"]').forEach(el => el.remove());
+        // Hapus pesan error/sukses sebelumnya
+        form.querySelectorAll('div[data-alert="custom"]').forEach(el => el.remove());
         successMessage.style.display = 'none';
 
         try {
@@ -130,57 +223,69 @@
             fileData: fileData,
             fileName: file.name,
             fileMimeType: file.type,
-            nama_file_kisi_kisi: file.name
+            nama_file_kisi_kisi: file.name // Ini agak redundan dengan fileName, tapi GAS Anda menggunakannya
           };
 
           const response = await fetch(GAS_WEB_APP_URL, {
             method: 'POST',
             body: JSON.stringify(formData),
-            redirect: 'follow'
+            redirect: 'follow', // Penting untuk GAS
+            // headers: { 'Content-Type': 'application/json' } // fetch() POST modern tidak memerlukannya secara eksplisit untuk stringify
           });
 
-          const result = await response.json(); 
+          const result = await response.json();
 
           if (result.status === "success") {
+            // Tampilkan pesan sukses kustom dari server jika ada
             const successTextSpan = document.querySelector('#success-text span:last-child');
-            const newMessage = result.message || defaultConfig.success_message;
+            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+            const newMessage = result.message || config.success_message;
+            
             if (successTextSpan) {
               successTextSpan.textContent = newMessage;
             }
 
             successMessage.style.display = 'block';
             form.reset();
-            const fileNameDisplay = document.getElementById('file-name-display');
+            
+            // Reset tampilan nama file
             fileNameDisplay.textContent = 'Belum ada file dipilih';
             fileNameDisplay.style.color = '#718096';
             fileNameDisplay.style.fontWeight = 'normal';
             
+            // Sembunyikan pesan sukses setelah 8 detik
             setTimeout(() => {
               successMessage.style.display = 'none';
+              // Kembalikan ke pesan default
               if (successTextSpan) {
-                successTextSpan.textContent = defaultConfig.success_message;
+                successTextSpan.textContent = config.success_message;
               }
             }, 8000);
+            
           } else {
+            // Jika server merespons dengan status "error"
             throw new Error(result.message || "Terjadi kesalahan pada server.");
           }
 
         } catch (error) {
           console.error('Error submitting to Apps Script:', error);
-          const errorDiv = document.createElement('div');
-          errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
-          errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>${error.message}</span></p>`;
-          form.appendChild(errorDiv);
-          setTimeout(() => errorDiv.remove(), 5000);
+          // Tampilkan error (bisa dari fetch gagal, .json() gagal, atau dari throw new Error)
+          showCustomAlert(form, error.message, 'error');
         } finally {
-          submitBtn.disabled = false;
-          submitText.style.display = 'inline';
-          loadingSpinner.style.display = 'none';
+          // --- Selesai proses loading ---
+          submitBtn.disabled = false;
+          submitText.style.display = 'inline';
+          loadingSpinner.style.display = 'none';
         }
-      });
-    }
+      });
+    }
 
-    initializeApp();
-  </script>
- </body>
+    // Jalankan aplikasi saat dokumen siap
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initializeApp);
+    } else {
+        initializeApp();
+    }
+  </script>
+</body>
 </html>
