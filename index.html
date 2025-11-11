@@ -23,7 +23,7 @@
 <body class="bg-gradient-to-br from-indigo-500 to-purple-700">
 
   <div class="container min-h-screen p-4 sm:p-6">
-    <div class="main-container max-w-3xl mx-auto py-8">
+    <div class="main-container max-w-5xl mx-auto py-8">
       
       <div class="header-card bg-white rounded-2xl p-6 sm:p-8 mb-6 shadow-2xl flex flex-col items-center">
         <img src="https://github.com/smknbojonggambir/submitpsas/blob/main/LOGO.png?raw=true" alt="Logo SMK Negeri Bojonggambir" class="w-24 h-24 mb-4 object-contain">
@@ -35,62 +35,87 @@
         </p>
       </div>
       
-      <div class="form-card bg-white rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div class="form-card bg-white rounded-2xl shadow-2xl overflow-hidden md:grid md:grid-cols-2">
         
-        <form id="submission-form">
-          
-          <div class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
+        <div class="p-6 sm:p-8 border-b md:border-b-0 md:border-r border-gray-200">
+          <h2 class="text-xl font-bold text-gray-800">Petunjuk Pengisian</h2>
+          <p class="mt-3 text-gray-600">
+            Harap isi semua data dengan benar dan teliti. Pastikan tidak ada kesalahan penulisan, terutama pada link soal dan nomor WhatsApp.
+          </p>
+          <ul class="mt-6 space-y-3 list-disc list-inside text-gray-600">
+            <li>
+              <span class="font-semibold text-gray-700">Periksa Link Soal:</span>
+              Pastikan link (URL) soal sudah dapat diakses oleh siapa saja yang memiliki link.
+            </li>
+            <li>
+              <span class="font-semibold text-gray-700">Nomor WhatsApp:</span>
+              Gunakan nomor WA yang aktif untuk menerima notifikasi otomatis setelah submit.
+            </li>
+            <li>
+              <span class="font-semibold text-gray-700">File Kisi-Kisi:</span>
+              File yang di-upload akan otomatis tersimpan di Google Drive panitia.
+            </li>
+          </ul>
+        </div>
+
+        <div class="p-6 sm:p-8">
+          <form id="submission-form" class="space-y-6">
             
-            <div>
-              <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
-                Nama Guru <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="nama-guru" required
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Nama Guru <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="nama-guru" required
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
+              
+              <div>
+                <label for="nomor-wa" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Nomor WhatsApp <span class="text-red-500">*</span>
+                </label>
+                <input type="tel" id="nomor-wa" required placeholder="0812..."
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
             </div>
-            
-            <div>
-              <label for="nomor-wa" class="block text-sm font-semibold text-gray-700 mb-2">
-                Nomor WhatsApp Pengirim <span class="text-red-500">*</span>
-              </label>
-              <input type="tel" id="nomor-wa" required placeholder="Contoh: 081234567890"
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-              <p class="mt-1 text-xs text-gray-500">Untuk notifikasi. Awali dengan '0' atau '62'.</p>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Mata Pelajaran <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="mata-pelajaran" required
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
+              
+              <div>
+                <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Kelas <span class="text-red-500">*</span>
+                </label>
+                <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Jumlah Soal <span class="text-red-500">*</span>
+                </label>
+                <input type="number" id="jumlah-soal" required min="1"
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
+
+              <div>
+                <label for="link-soal" class="block text-sm font-semibold text-gray-700 mb-2">
+                  Link Soal PSAS <span class="text-red-500">*</span>
+                </label>
+                <input type="url" id="link-soal" required placeholder="https://..."
+                       class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              </div>
             </div>
 
             <div>
-              <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
-                Mata Pelajaran <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="mata-pelajaran" required
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-            
-            <div>
-              <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
-                Kelas <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-
-            <div>
-              <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-                Jumlah Soal <span class="text-red-500">*</span>
-              </label>
-              <input type="number" id="jumlah-soal" required min="1"
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-
-            <div>
-              <label for="link-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-                Link Soal PSAS <span class="text-red-500">*</span>
-              </label>
-              <input type="url" id="link-soal" required placeholder="https://..."
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-            
-            <div class="md:col-span-2">
               <label class="block text-sm font-semibold text-gray-700 mb-2">
                 Upload Kisi-Kisi Soal <span class="text-red-500">*</span>
               </label>
@@ -108,7 +133,7 @@
               </label>
             </div>
 
-            <div class="md:col-span-2">
+            <div>
               <label for="catatan" class="block text-sm font-semibold text-gray-700 mb-2">
                 Catatan (Opsional)
               </label>
@@ -116,18 +141,15 @@
                         class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-vertical"></textarea>
             </div>
 
-          </div> <button type="submit" id="submit-btn"
-                  class="w-full p-4 mt-6 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
-            <span id="submit-text">Submit Soal</span>
-            <span id="loading-spinner" class="hidden">⏳ Mengirim...</span>
-          </button>
-        </form>
-        
-        <div id="alert-container" class="mt-6"></div> 
-
-      </div>
-      
-      <div class="text-center mt-8">
+            <button type="submit" id="submit-btn"
+                    class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+              <span id="submit-text">Submit Soal</span>
+              <span id="loading-spinner" class="hidden">⏳ Mengirim...</span>
+            </button>
+          </form>
+          
+          <div id="alert-container" class="mt-6"></div> 
+        </div> </div> <div class="text-center mt-8">
         <p id="footer-text" class="text-sm text-white/90 font-medium">
           © 2024 SMK Negeri Bojonggambir
         </p>
@@ -198,26 +220,22 @@
     }
     
     /**
-     * Fungsi BARU untuk mengirim pesan WhatsApp ke PENGIRIM.
+     * Fungsi untuk mengirim pesan WhatsApp ke PENGIRIM.
      */
     function sendWhatsAppMessageToSender(formData) {
         let senderNumber = formData.nomor_wa.trim();
         
-        // Validasi dan format nomor WA
         if (!senderNumber) {
             console.warn("Nomor WA pengirim tidak diisi.");
-            return; // Jangan lakukan apa-apa jika nomor kosong
+            return;
         }
         
-        // Hapus spasi, strip, atau tanda plus
         senderNumber = senderNumber.replace(/[\s-+\.]/g, '');
         
-        // Ubah format 08... menjadi 628...
         if (senderNumber.startsWith('0')) {
             senderNumber = '62' + senderNumber.substring(1);
         }
         
-        // Jika sudah 62, biarkan. Jika tidak 0 atau 62, anggap nomor lokal (tambahkan 62)
         if (!senderNumber.startsWith('62')) {
             senderNumber = '62' + senderNumber;
         }
@@ -292,7 +310,7 @@
           const fileData = await fileToBase64(file);
           formDataToSend = { 
             nama_guru: document.getElementById('nama-guru').value,
-            nomor_wa: document.getElementById('nomor-wa').value, // TAMBAHKAN NOMOR WA
+            nomor_wa: document.getElementById('nomor-wa').value, // NOMOR WA
             mata_pelajaran: document.getElementById('mata-pelajaran').value,
             kelas: document.getElementById('kelas').value,
             jumlah_soal: document.getElementById('jumlah-soal').value,
