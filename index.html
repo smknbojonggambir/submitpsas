@@ -40,16 +40,12 @@
         <div>
           <h2 class="text-xl font-bold text-gray-800">Petunjuk Pengisian</h2>
           <p class="mt-3 text-gray-600">
-            Harap isi semua data dengan benar dan teliti. Pastikan tidak ada kesalahan penulisan, terutama pada link soal dan nomor WhatsApp.
+            Harap isi semua data dengan benar dan teliti. Pastikan tidak ada kesalahan penulisan, terutama pada link soal.
           </p>
           <ul class="mt-6 space-y-3 list-disc list-inside text-gray-600">
             <li>
               <span class="font-semibold text-gray-700">Periksa Link Soal:</span>
               Pastikan link (URL) soal sudah dapat diakses oleh siapa saja yang memiliki link.
-            </li>
-            <li>
-              <span class="font-semibold text-gray-700">Nomor WhatsApp:</span>
-              Gunakan nomor WA yang aktif untuk menerima notifikasi otomatis setelah submit.
             </li>
             <li>
               <span class="font-semibold text-gray-700">File Kisi-Kisi:</span>
@@ -62,22 +58,12 @@
 
         <form id="submission-form" class="space-y-6">
             
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
-                Nama Guru <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="nama-guru" required
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-            
-            <div>
-              <label for="nomor-wa" class="block text-sm font-semibold text-gray-700 mb-2">
-                Nomor WhatsApp <span class="text-red-500">*</span>
-              </label>
-              <input type="tel" id="nomor-wa" required placeholder="0812..."
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
+          <div>
+            <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
+              Nama Guru <span class="text-red-500">*</span>
+            </label>
+            <input type="text" id="nama-guru" required
+                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
           </div>
 
           <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -150,7 +136,9 @@
         </form>
         
         <div id="alert-container" class="mt-6"></div> 
-      </div> <div class="text-center mt-8">
+      </div>
+      
+      <div class="text-center mt-8">
         <p id="footer-text" class="text-sm text-white/90 font-medium">
           © 2024 SMK Negeri Bojonggambir
         </p>
@@ -179,9 +167,6 @@
     }
     // --- END SDK CONFIG ---
 
-    /**
-     * Fungsi helper untuk mengubah file menjadi string Base64.
-     */
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
         const reader = new FileReader();
@@ -193,12 +178,9 @@
       });
     }
 
-    /**
-     * Fungsi untuk menampilkan pesan error/success kustom di dalam form
-     */
     function showCustomAlert(message, type = 'error') {
         const alertContainer = document.getElementById('alert-container');
-        alertContainer.innerHTML = ''; // Hapus alert lama
+        alertContainer.innerHTML = '';
         const alertDiv = document.createElement('div');
         alertDiv.setAttribute('data-alert', 'custom');
         
@@ -207,7 +189,7 @@
             alertClasses = 'p-4 bg-red-100 border-l-4 border-red-500 rounded-lg animate-fadeInUp';
             icon = '❌';
             textClasses = 'font-semibold text-red-800 flex items-center gap-2';
-        } else { // type === 'success'
+        } else {
             alertClasses = 'p-4 bg-green-100 border-l-4 border-green-500 rounded-lg animate-fadeInUp';
             icon = '✅';
             textClasses = 'font-semibold text-green-800 flex items-center gap-2';
@@ -216,50 +198,12 @@
         alertDiv.innerHTML = `<p class="${textClasses}"><span class="text-lg">${icon}</span> <span>${message}</span></p>`;
         alertContainer.appendChild(alertDiv);
         
-        // Hapus otomatis setelah beberapa detik
         setTimeout(() => alertDiv.remove(), 8000);
     }
     
-    /**
-     * Fungsi untuk mengirim pesan WhatsApp ke PENGIRIM.
-     */
-    function sendWhatsAppMessageToSender(formData) {
-        let senderNumber = formData.nomor_wa.trim();
-        
-        if (!senderNumber) {
-            console.warn("Nomor WA pengirim tidak diisi.");
-            return;
-        }
-        
-        senderNumber = senderNumber.replace(/[\s-+\.]/g, '');
-        
-        if (senderNumber.startsWith('0')) {
-            senderNumber = '62' + senderNumber.substring(1);
-        }
-        
-        if (!senderNumber.startsWith('62')) {
-            senderNumber = '62' + senderNumber;
-        }
-
-        const guru = formData.nama_guru || "Guru Yth";
-        const mapel = formData.mata_pelajaran || "Mapel";
-
-        const message = encodeURIComponent(
-            `Halo, *${guru}*.\n\n` +
-            `Terima kasih! Kami telah menerima data submit soal Anda untuk:\n` +
-            `- Mata Pelajaran: *${mapel}*\n` +
-            `- Kelas: *${formData.kelas}*\n` +
-            `- File Kisi-Kisi: *${formData.fileName}*\n\n` +
-            `Ini adalah notifikasi otomatis. Mohon tidak membalas pesan ini.`
-        );
-
-        const whatsappUrl = `https://wa.me/${senderNumber}?text=${message}`;
-        window.open(whatsappUrl, '_blank');
-    }
-
-
+    // FUNGSI WHATSAPP TELAH DIHAPUS
+    
     async function initializeApp() {
-      // --- Handler untuk Input File Kustom ---
       const fileInput = document.getElementById('file-kisi-kisi');
       const fileNameDisplay = document.getElementById('file-name-display');
       const defaultFileTextHTML = fileNameDisplay.innerHTML; 
@@ -273,12 +217,10 @@
         }
       });
 
-      // --- Logika Submit Form ---
       const form = document.getElementById('submission-form');
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // !!! GANTI DENGAN URL WEB APP ANDA YANG SUDAH DI-DEPLOY !!!
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec";
 
         if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DA..." || GAS_WEB_APP_URL.includes("AKfycb...")) {
@@ -300,7 +242,6 @@
           return;
         }
 
-        // --- Mulai proses loading ---
         submitBtn.disabled = true;
         submitText.classList.add('hidden');
         loadingSpinner.classList.remove('hidden');
@@ -311,7 +252,7 @@
           const fileData = await fileToBase64(file);
           formDataToSend = { 
             nama_guru: document.getElementById('nama-guru').value,
-            nomor_wa: document.getElementById('nomor-wa').value, // NOMOR WA
+            // 'nomor_wa' TELAH DIHAPUS
             mata_pelajaran: document.getElementById('mata-pelajaran').value,
             kelas: document.getElementById('kelas').value,
             jumlah_soal: document.getElementById('jumlah-soal').value,
@@ -341,8 +282,7 @@
             const newMessage = result.message || config.success_message;
             showCustomAlert(newMessage, 'success');
             
-            // --- KIRIM PESAN WHATSAPP KE PENGIRIM ---
-            sendWhatsAppMessageToSender(formDataToSend);
+            // PANGGILAN FUNGSI WHATSAPP TELAH DIHAPUS
             
             form.reset();
             fileNameDisplay.innerHTML = defaultFileTextHTML;
