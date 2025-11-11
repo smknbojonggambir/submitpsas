@@ -20,44 +20,119 @@
     .container {
       min-height: 100%;
     }
+    @media (max-width: 640px) {
+      .header-card {
+        padding: 24px 16px !important;
+        margin-bottom: 16px !important;
+      }
+      .form-card {
+        padding: 24px 16px !important;
+      }
+      .app-title {
+        font-size: 22px !important;
+      }
+      .school-logo {
+        width: 65px !important;
+        height: 65px !important;
+      }
+      .main-container {
+        padding: 24px 16px !important;
+      }
+    }
+    .input-field {
+      transition: all 0.3s ease;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-1px);
+    }
+    .submit-btn {
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+    }
+    .submit-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .info-box {
+      transition: all 0.3s ease;
+    }
+    .info-box:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .card {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .logo-container {
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
   </style>
   <style>@view-transition { navigation: auto; }</style>
  </head>
  <body>
   <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;"><!-- Header -->
-    <div style="background: white; border-radius: 16px; padding: 32px; margin-bottom: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
-     <div style="text-align: center;"><img id="school-logo" src="https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png" alt="Logo SMK Negeri Bojonggambir" style="width: 80px; height: 80px; margin: 0 auto 16px; display: block; object-fit: contain;" onerror="this.style.display='none'; this.alt='Logo tidak dapat dimuat';">
-      <h1 id="app-title" style="font-size: 28px; font-weight: bold; color: #1a202c; margin: 0 0 8px 0;">Submit Soal PSAS</h1>
-      <p id="school-name" style="font-size: 16px; color: #718096; margin: 0;">SMK Negeri Bojonggambir</p>
+   <div class="main-container" style="max-width: 640px; margin: 0 auto; padding: 32px 20px;"><!-- Header -->
+    <div class="header-card card" style="background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+     <div style="text-align: center;">
+      <div class="logo-container" style="margin-bottom: 20px;"><img id="school-logo" class="school-logo" src="https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png" alt="Logo SMK Negeri Bojonggambir" style="width: 90px; height: 90px; margin: 0 auto; display: block; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.alt='Logo tidak dapat dimuat';">
+      </div>
+      <h1 id="app-title" class="app-title" style="font-size: 32px; font-weight: 800; color: #1a202c; margin: 0 0 8px 0; letter-spacing: -0.5px;">Submit Soal PSAS</h1>
+      <p id="school-name" style="font-size: 16px; color: #718096; margin: 0; font-weight: 500;">SMK Negeri Bojonggambir</p>
      </div>
     </div><!-- Form -->
-    <div style="background: white; border-radius: 16px; padding: 32px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+    <div class="form-card card" style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
      <form id="submission-form">
-      <div style="margin-bottom: 20px;"><label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Nama Guru</label> <input type="text" id="nama-guru" required style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'">
+      <div style="margin-bottom: 24px;"><label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Nama Guru <span style="color: #e53e3e;">*</span></label> <input type="text" id="nama-guru" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
       </div>
-      <div style="margin-bottom: 20px;"><label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Mata Pelajaran</label> <input type="text" id="mata-pelajaran" required style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'">
+      <div style="margin-bottom: 24px;"><label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Mata Pelajaran <span style="color: #e53e3e;">*</span></label> <input type="text" id="mata-pelajaran" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
       </div>
-      <div style="margin-bottom: 20px;"><label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Kelas</label> <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'">
+      <div style="margin-bottom: 24px;"><label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Kelas <span style="color: #e53e3e;">*</span></label> <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
       </div>
-      <div style="margin-bottom: 20px;"><label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Jumlah Soal</label> <input type="number" id="jumlah-soal" required min="1" style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'">
+      <div style="margin-bottom: 24px;"><label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Jumlah Soal <span style="color: #e53e3e;">*</span></label> <input type="number" id="jumlah-soal" required min="1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
       </div>
-      <div style="margin-bottom: 24px;"><label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Catatan (Opsional)</label> <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; resize: vertical; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'"></textarea>
+      <div style="margin-bottom: 24px;"><label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Link Soal PSAS <span style="color: #e53e3e;">*</span></label> <input type="url" id="link-soal" required placeholder="https://..." class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
       </div>
-      <div style="margin-bottom: 20px;"><label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 8px; font-size: 14px;">Link Soal PSAS</label> <input type="url" id="link-soal" required placeholder="https://..." style="width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 8px; font-size: 14px; transition: border-color 0.2s;" onfocus="this.style.borderColor='#667eea'" onblur="this.style.borderColor='#e2e8f0'">
+      <div style="margin-bottom: 28px;"><label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Catatan (Opsional)</label> <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; resize: vertical; background: #f7fafc;"></textarea>
       </div>
-      <div style="margin-bottom: 24px; padding: 16px; background: #edf2f7; border-radius: 8px; border-left: 4px solid #667eea;">
-       <p style="margin: 0 0 8px 0; font-weight: 600; color: #2d3748; font-size: 14px;">📁 Upload Kisi-Kisi Soal:</p><a href="https://drive.google.com/drive/folders/1FYLcIcjl4wUtcdKWw0rjT7bFROHroP-k" target="_blank" rel="noopener noreferrer" style="color: #667eea; text-decoration: underline; font-size: 14px; word-break: break-all;">Klik di sini untuk upload file</a>
+      <div class="info-box" style="margin-bottom: 20px; padding: 18px; background: linear-gradient(135deg, #edf2f7 0%, #e6f2ff 100%); border-radius: 12px; border-left: 4px solid #667eea;">
+       <p style="margin: 0 0 10px 0; font-weight: 700; color: #2d3748; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">📁</span> Upload Kisi-Kisi Soal</p><a href="https://drive.google.com/drive/folders/1FYLcIcjl4wUtcdKWw0rjT7bFROHroP-k" target="_blank" rel="noopener noreferrer" style="color: #667eea; text-decoration: none; font-size: 14px; font-weight: 600; word-break: break-all; border-bottom: 2px solid transparent; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#667eea'" onmouseout="this.style.borderColor='transparent'">Klik di sini untuk upload file →</a>
       </div>
-      <div style="margin-bottom: 24px; padding: 16px; background: #edf2f7; border-radius: 8px; border-left: 4px solid #764ba2;">
-       <p style="margin: 0 0 8px 0; font-weight: 600; color: #2d3748; font-size: 14px;">📊 Lihat Rekap Data:</p><a href="https://docs.google.com/spreadsheets/d/1eMO8-evONR5nk8_0k5hBEKF8ZYXcCC-h1htBC7h4RVs/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" style="color: #764ba2; text-decoration: underline; font-size: 14px; word-break: break-all;">Klik di sini untuk melihat rekap</a>
-      </div><button type="submit" id="submit-btn" style="width: 100%; padding: 14px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: 600; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 6px 16px rgba(102, 126, 234, 0.5)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 12px rgba(102, 126, 234, 0.4)'"> <span id="submit-text">Submit Soal</span> <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span> </button>
+      <div class="info-box" style="margin-bottom: 28px; padding: 18px; background: linear-gradient(135deg, #edf2f7 0%, #f3e6ff 100%); border-radius: 12px; border-left: 4px solid #764ba2;">
+       <p style="margin: 0 0 10px 0; font-weight: 700; color: #2d3748; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 20px;">📊</span> Lihat Rekap Data</p><a href="https://docs.google.com/spreadsheets/d/1eMO8-evONR5nk8_0k5hBEKF8ZYXcCC-h1htBC7h4RVs/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" style="color: #764ba2; text-decoration: none; font-size: 14px; font-weight: 600; word-break: break-all; border-bottom: 2px solid transparent; transition: border-color 0.2s;" onmouseover="this.style.borderColor='#764ba2'" onmouseout="this.style.borderColor='transparent'">Klik di sini untuk melihat rekap →</a>
+      </div><button type="submit" id="submit-btn" class="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); letter-spacing: 0.3px;"> <span id="submit-text">Submit Soal</span> <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span> </button>
      </form><!-- Success Message -->
-     <div id="success-message" style="display: none; margin-top: 20px; padding: 16px; background: #c6f6d5; border-radius: 8px; border-left: 4px solid #48bb78;">
-      <p id="success-text" style="margin: 0; color: #22543d; font-weight: 600; font-size: 14px;">✅ Terima kasih! Soal Anda telah berhasil disubmit.</p>
+     <div id="success-message" style="display: none; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;">
+      <p id="success-text" style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">✅</span> <span>Terima kasih! Soal Anda telah berhasil disubmit.</span></p>
      </div>
     </div><!-- Footer -->
-    <div style="text-align: center; margin-top: 24px; color: white; font-size: 14px; opacity: 0.9;">
+    <div style="text-align: center; margin-top: 32px; color: white; font-size: 14px; opacity: 0.95; font-weight: 500;">
      <p style="margin: 0;">© 2024 SMK Negeri Bojonggambir</p>
     </div>
    </div>
@@ -97,7 +172,7 @@
 
       document.querySelector('.container').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
       
-      const cards = document.querySelectorAll('[style*="background: white"]');
+      const cards = document.querySelectorAll('.header-card, .form-card');
       cards.forEach(card => {
         card.style.background = surfaceColor;
       });
@@ -105,7 +180,7 @@
       document.getElementById('app-title').textContent = config.app_title || defaultConfig.app_title;
       document.getElementById('app-title').style.color = textColor;
       document.getElementById('app-title').style.fontFamily = fontFamily;
-      document.getElementById('app-title').style.fontSize = `${baseSize * 1.75}px`;
+      document.getElementById('app-title').style.fontSize = `${baseSize * 2}px`;
 
       document.getElementById('school-name').textContent = config.school_name || defaultConfig.school_name;
       document.getElementById('school-name').style.fontFamily = fontFamily;
@@ -116,7 +191,10 @@
       document.getElementById('submit-btn').style.fontFamily = fontFamily;
       document.getElementById('submit-btn').style.fontSize = `${baseSize}px`;
 
-      document.getElementById('success-text').textContent = `✅ ${config.success_message || defaultConfig.success_message}`;
+      const successTextSpan = document.querySelector('#success-text span:last-child');
+      if (successTextSpan) {
+        successTextSpan.textContent = config.success_message || defaultConfig.success_message;
+      }
       document.getElementById('success-text').style.fontFamily = fontFamily;
       document.getElementById('success-text').style.fontSize = `${baseSize * 0.875}px`;
 
@@ -130,10 +208,10 @@
       const inputs = document.querySelectorAll('input, textarea');
       inputs.forEach(input => {
         input.style.fontFamily = fontFamily;
-        input.style.fontSize = `${baseSize * 0.875}px`;
+        input.style.fontSize = `${baseSize * 0.9375}px`;
       });
 
-      const links = document.querySelectorAll('a');
+      const links = document.querySelectorAll('.info-box a');
       links.forEach((link, index) => {
         link.style.fontFamily = fontFamily;
         link.style.fontSize = `${baseSize * 0.875}px`;
@@ -142,6 +220,13 @@
         } else {
           link.style.color = secondaryColor;
         }
+      });
+
+      const infoBoxTitles = document.querySelectorAll('.info-box p');
+      infoBoxTitles.forEach(title => {
+        title.style.color = textColor;
+        title.style.fontFamily = fontFamily;
+        title.style.fontSize = `${baseSize * 0.875}px`;
       });
     }
 
@@ -254,8 +339,8 @@
             }, 5000);
           } else {
             const errorDiv = document.createElement('div');
-            errorDiv.style.cssText = 'margin-top: 20px; padding: 16px; background: #fed7d7; border-radius: 8px; border-left: 4px solid #f56565;';
-            errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 600; font-size: 14px;">❌ Terjadi kesalahan. Silakan coba lagi.</p>`;
+            errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
+            errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Terjadi kesalahan. Silakan coba lagi.</span></p>`;
             form.appendChild(errorDiv);
             setTimeout(() => errorDiv.remove(), 5000);
           }
@@ -269,5 +354,5 @@
 
     initializeApp();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cdcf62c291008f',t:'MTc2Mjg2NDMyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cdd80092d2008f',t:'MTc2Mjg2NDY3Ni4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
