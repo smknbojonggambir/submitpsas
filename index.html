@@ -271,11 +271,13 @@
             
             if (result.success) {
                 messageDiv.className = 'message success';
-                messageDiv.innerHTML = '✅ ' + result.message;
+                // PESAN PENUTUP KETIKA SUKSES
+                messageDiv.innerHTML = '✅ Data Anda sudah terkirim! ' + result.message;
                 document.getElementById('submissionForm').reset();
             } else {
                 messageDiv.className = 'message error';
-                messageDiv.innerHTML = '❌ ' + result.message;
+                // PESAN PENUTUP KETIKA GAGAL (dari skrip Apps Script)
+                messageDiv.innerHTML = '❌ Data Anda belum terkirim. Silahkan ulang. Kesalahan: ' + result.message;
             }
         }
 
@@ -285,7 +287,8 @@
 
             const messageDiv = document.getElementById('responseMessage');
             messageDiv.className = 'message error';
-            messageDiv.innerHTML = '❌ Terjadi kesalahan server: ' + error.message;
+            // PESAN PENUTUP KETIKA GAGAL (Kesalahan teknis server/koneksi)
+            messageDiv.innerHTML = '❌ Data Anda belum terkirim. Silahkan ulang. Terjadi kesalahan server: ' + error.message;
         }
     </script>
 
