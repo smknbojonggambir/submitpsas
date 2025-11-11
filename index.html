@@ -5,111 +5,66 @@
   <meta charset="UTF-8">
   <title>Formulir Submit Soal PSAS</title>
   <style>
-    :root {
-      --primary-color: #004d99;
-      --secondary-color: #ff9900;
-      --success-color: #28a745;
-      --background-color: #f0f2f5;
-      --card-background: #ffffff;
-      --border-radius: 12px;
-    }
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 15px;
-      background-color: var(--background-color);
-      color: #333;
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f2f5;
+      padding: 20px;
     }
     .container {
-      max-width: 650px;
+      max-width: 600px;
+      background: #fff;
       margin: auto;
-      background: var(--card-background);
-      padding: 30px;
-      border-radius: var(--border-radius);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-      animation: fadeIn 0.8s ease-out;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
     }
-    .header { text-align: center; margin-bottom: 30px; }
-    .logo {
-      width: 80px; height: 80px; margin: 0 auto 15px;
-      border-radius: 50%; border: 3px solid var(--secondary-color);
-      background-image: url('https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png');
-      background-size: cover; background-position: center;
-    }
-    h3 { color: var(--primary-color); margin: 0; font-size: 1.5em; }
-    .smk-name { color: #6c757d; font-size: 0.9em; }
-    label {
-      display: block; margin-top: 15px; font-weight: 600;
-      color: var(--primary-color);
-    }
+    h3 { text-align: center; color: #004d99; }
+    label { display: block; margin-top: 15px; font-weight: 600; }
     input, select {
-      width: 100%; padding: 12px; margin-top: 5px;
-      border: 1px solid #dee2e6; border-radius: 8px;
-      box-sizing: border-box; background-color: #fcfcfc;
-    }
-    input:focus, select:focus {
-      border-color: var(--secondary-color);
-      box-shadow: 0 0 0 3px rgba(255,153,0,0.3);
-      outline: none; background-color: #fff;
+      width: 100%; padding: 10px; border-radius: 8px;
+      border: 1px solid #ccc; margin-top: 5px;
     }
     button {
-      background-color: var(--success-color); color: white;
-      padding: 15px; border: none; border-radius: 8px;
-      cursor: pointer; width: 100%; margin-top: 30px;
-      font-size: 1.1em; font-weight: bold;
-      transition: background-color 0.3s, transform 0.2s;
+      width: 100%; margin-top: 20px; padding: 12px;
+      border: none; border-radius: 8px;
+      background: #28a745; color: white; font-weight: bold;
+      cursor: pointer;
     }
-    button:hover { background-color: #1e7e34; transform: translateY(-2px); }
     .message {
-      margin-top: 20px; padding: 15px; border-radius: 8px;
-      display: none; font-weight: 600; text-align: center;
+      margin-top: 20px; padding: 12px; border-radius: 8px;
+      font-weight: 600; text-align: center; display: none;
     }
-    .success { background-color: #d4edda; color: #155724; }
-    .error { background-color: #f8d7da; color: #721c24; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
+    .success { background: #d4edda; color: #155724; }
+    .error { background: #f8d7da; color: #721c24; }
   </style>
 </head>
 <body>
   <div class="container">
-    <div class="header">
-      <div class="logo" role="img" aria-label="Logo SMK Negeri Bojonggambir"></div>
-      <h3>Formulir Submit Soal PSAS</h3>
-      <span class="smk-name">SMK Negeri Bojonggambir</span>
-    </div>
+    <h3>Formulir Submit Soal PSAS</h3>
+    <form id="submissionForm">
+      <label>Nama Guru:</label>
+      <input type="text" name="namaGuru" required>
 
-    <form id="submissionForm"
-      action="https://script.google.com/macros/s/AKfycbygFbi1aNNlvW69bUJU0hV1TI4Jt2ejch0bi-w77ZdjKLhNfZPaCFNjHZeqOIx0lU1F_A/exec"
-      method="POST" enctype="multipart/form-data">
-
-      <label for="namaGuru">Nama Guru (Beserta Gelar):</label>
-      <input type="text" id="namaGuru" name="namaGuru" required>
-
-      <label for="kelas">Kelas Pilihan:</label>
-      <select id="kelas" name="kelas" required>
+      <label>Kelas:</label>
+      <select name="kelas" required>
         <option value="">Pilih Kelas</option>
-        <option value="X DKV 1">X DKV 1</option>
-        <option value="X DKV 2">X DKV 2</option>
-        <option value="XI DKV 1">XI DKV 1</option>
-        <option value="XI DKV 2">XI DKV 2</option>
-        <option value="XI DKV 3">XI DKV 3</option>
-        <option value="X APHP">X APHP</option>
-        <option value="XI APHP">XI APHP</option>
-        <option value="XII DKV 1">XII DKV 1</option>
-        <option value="XII APHP">XII APHP</option>
+        <option>X DKV 1</option><option>X DKV 2</option>
+        <option>XI DKV 1</option><option>XI DKV 2</option>
+        <option>XI DKV 3</option><option>X APHP</option>
+        <option>XI APHP</option><option>XII DKV 1</option>
+        <option>XII APHP</option>
       </select>
 
-      <label for="mataPelajaran">Mata Pelajaran:</label>
-      <input type="text" id="mataPelajaran" name="mataPelajaran" required>
+      <label>Mata Pelajaran:</label>
+      <input type="text" name="mataPelajaran" required>
 
-      <label for="linkMateri">Link Dokumen Soal (Share Viewer):</label>
-      <input type="text" id="linkMateri" name="linkMateri" placeholder="URL Google Docs/Drive" required>
+      <label>Link Dokumen Soal (Share Viewer):</label>
+      <input type="url" name="linkMateri" required>
 
-      <label for="uploadedFile">Unggah File Kisi-kisi:</label>
+      <label>Unggah File Kisi-kisi:</label>
       <input type="file" id="uploadedFile" name="uploadedFile" required>
 
-      <button type="submit" id="submitButton">Kirim Dokumen Soal PSAS</button>
+      <button type="submit">Kirim Dokumen Soal PSAS</button>
     </form>
 
     <div id="responseMessage" class="message"></div>
@@ -117,36 +72,35 @@
 
   <script>
     function showMessage(type, text) {
-      const messageDiv = document.getElementById('responseMessage');
-      messageDiv.className = 'message ' + type;
-      messageDiv.style.display = 'block';
-      messageDiv.textContent = text;
+      const msg = document.getElementById('responseMessage');
+      msg.className = 'message ' + type;
+      msg.style.display = 'block';
+      msg.textContent = text;
     }
 
-    document.getElementById('submissionForm').addEventListener('submit', async (e) => {
+    document.getElementById('submissionForm').addEventListener('submit', e => {
       e.preventDefault();
+      const file = document.getElementById('uploadedFile').files[0];
+      if (!file) return showMessage('error', 'File Kisi-kisi wajib diunggah.');
 
-      const form = e.target;
-      const formData = new FormData(form);
-      const button = document.getElementById('submitButton');
-      button.disabled = true;
-      showMessage('', '⏳ Mengirim data, mohon tunggu...');
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const formData = {
+          namaGuru: e.target.namaGuru.value,
+          kelas: e.target.kelas.value,
+          mataPelajaran: e.target.mataPelajaran.value,
+          linkMateri: e.target.linkMateri.value,
+          fileName: file.name,
+          fileData: evt.target.result.split(',')[1]
+        };
 
-      try {
-        const response = await fetch(form.action, { method: 'POST', body: formData });
-        const result = await response.json();
-
-        if (result.success) {
-          showMessage('success', '✅ ' + result.message);
-          form.reset();
-        } else {
-          showMessage('error', '❌ ' + result.message);
-        }
-      } catch (err) {
-        showMessage('error', '⚠️ Terjadi kesalahan jaringan: ' + err.message);
-      } finally {
-        button.disabled = false;
-      }
+        showMessage('', '⏳ Mengirim data...');
+        google.script.run
+          .withSuccessHandler(res => showMessage('success', '✅ ' + res))
+          .withFailureHandler(err => showMessage('error', '❌ ' + err.message))
+          .uploadData(formData);
+      };
+      reader.readAsDataURL(file);
     });
   </script>
 </body>
