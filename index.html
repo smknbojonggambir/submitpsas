@@ -191,20 +191,71 @@
             <label for="uploadedFile">Unggah File Kisi-kisi (Wajib):</label>
             <input type="file" id="uploadedFile" name="uploadedFile" required>
             
-            <button type="submit">Kirim Dokumen Soal PSAS</button>
+            <button type="submit" id="submitButton">Kirim Dokumen Soal PSAS</button>
         </form>
         
         <div id="responseMessage" class="message"></div>
     </div>
 
     <script>
+        // Fungsi untuk menampilkan pesan error validasi
+        function displayValidationError(message) {
+            const messageDiv = document.getElementById('responseMessage');
+            messageDiv.style.display = 'block';
+            messageDiv.className = 'message error';
+            messageDiv.innerHTML = '⚠️ **Validasi Gagal:** ' + message;
+        }
+
+        // Fungsi Validasi Kustom
+        function validateForm() {
+            const namaGuru = document.getElementById('namaGuru').value.trim();
+            const kelas = document.getElementById('kelas').value;
+            const mataPelajaran = document.getElementById('mataPelajaran').value.trim();
+            const linkMateri = document.getElementById('linkMateri').value.trim();
+            const uploadedFile = document.getElementById('uploadedFile').files.length;
+            
+            if (namaGuru === "") {
+                displayValidationError("Nama Guru harus diisi.");
+                return false;
+            }
+            if (kelas === "") {
+                displayValidationError("Pilihan Kelas harus dipilih.");
+                return false;
+            }
+            if (mataPelajaran === "") {
+                displayValidationError("Mata Pelajaran harus diisi.");
+                return false;
+            }
+            if (linkMateri === "") {
+                displayValidationError("Link Dokumen Soal harus diisi.");
+                return false;
+            }
+            // Validasi file input: harus ada 1 file yang dipilih
+            if (uploadedFile === 0) {
+                displayValidationError("Anda wajib mengunggah File Kisi-kisi.");
+                return false;
+            }
+
+            return true; // Semua validasi lolos
+        }
+
+
         document.getElementById('submissionForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Lakukan Validasi sebelum mengirim ke Apps Script
+            if (!validateForm()) {
+                return; // Hentikan proses jika validasi gagal
+            }
+
+            // Jika validasi sukses, tampilkan pesan loading dan kirim data
             const messageDiv = document.getElementById('responseMessage');
             messageDiv.style.display = 'block';
             messageDiv.className = 'message';
             messageDiv.innerHTML = 'Mengirim data dan mengunggah file... **Mohon tunggu hingga selesai**';
+
+            // Nonaktifkan tombol kirim saat proses berlangsung
+            document.getElementById('submitButton').disabled = true;
 
             google.script.run
                 .withSuccessHandler(onSuccess)
@@ -213,6 +264,9 @@
         });
 
         function onSuccess(result) {
+            // Aktifkan kembali tombol
+            document.getElementById('submitButton').disabled = false;
+
             const messageDiv = document.getElementById('responseMessage');
             
             if (result.success) {
@@ -226,6 +280,9 @@
         }
 
         function onError(error) {
+            // Aktifkan kembali tombol
+            document.getElementById('submitButton').disabled = false;
+
             const messageDiv = document.getElementById('responseMessage');
             messageDiv.className = 'message error';
             messageDiv.innerHTML = '❌ Terjadi kesalahan server: ' + error.message;
