@@ -1,407 +1,468 @@
 <!doctype html>
 <html lang="id">
- <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit Soal PSAS</title>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      height: 100%;
-    }
-    html {
-      height: 100%;
-    }
-    .container {
-      min-height: 100%;
-    }
-    @media (max-width: 640px) {
-      .header-card {
-        padding: 20px 16px !important;
-        margin-bottom: 16px !important;
-      }
-      .form-card {
-        padding: 20px 16px !important;
-      }
-      .app-title {
-        font-size: 24px !important;
-        line-height: 1.2 !important;
-      }
-      .school-logo {
-        width: 70px !important;
-        height: 70px !important;
-      }
-      .main-container {
-        padding: 16px 12px !important;
-      }
-      .input-field, textarea {
-        font-size: 16px !important;
-      }
-      label {
-        font-size: 13px !important;
-      }
-      .submit-btn {
-        padding: 14px !important;
-        font-size: 15px !important;
-      }
-      #file-name-display {
-        font-size: 12px !important;
-        word-break: break-word;
-      }
-    }
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit Soal PSAS</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="/_sdk/data_sdk.js"></script> 
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* ... SEMUA CSS ANDA YANG SEBELUMNYA ... */
+    /* (Tidak perlu diubah, jadi saya singkat di sini) */
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      height: 100%;
+    }
+    html {
+      height: 100%;
+    }
+    .container {
+      min-height: 100%;
+    }
+    @media (max-width: 640px) {
+      .header-card {
+        padding: 20px 16px !important;
+        margin-bottom: 16px !important;
+      }
+      .form-card {
+        padding: 20px 16px !important;
+      }
+      .app-title {
+        font-size: 24px !important;
+        line-height: 1.2 !important;
+      }
+      .school-logo {
+        width: 70px !important;
+        height: 70px !important;
+      }
+      .main-container {
+        padding: 16px 12px !important;
+      }
+      .input-field, textarea {
+        font-size: 16px !important;
+      }
+      label {
+        font-size: 13px !important;
+      }
+      .submit-btn {
+        padding: 14px !important;
+        font-size: 15px !important;
+      }
+      #file-name-display {
+        font-size: 12px !important;
+        word-break: break-word;
+      }
+    }
+    
+    @media (min-width: 641px) and (max-width: 1024px) {
+      .main-container {
+        padding: 40px 24px !important;
+      }
+      .header-card {
+        padding: 28px !important;
+      }
+      .form-card {
+        padding: 28px !important;
+      }
+    }
+    
+    @media (min-width: 1025px) {
+      .main-container {
+        max-width: 680px !important;
+      }
+    }
+    .input-field {
+      transition: all 0.3s ease;
+    }
+    .input-field:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      transform: translateY(-1px);
+    }
+    .submit-btn {
+      transition: all 0.3s ease;
+    }
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
+    }
+    .submit-btn:active:not(:disabled) {
+      transform: translateY(0);
+    }
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .info-box {
+      transition: all 0.3s ease;
+    }
+    .info-box:hover {
+      transform: translateX(4px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+    .card {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .logo-container {
+      animation: fadeIn 0.8s ease-out;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+ </head>
+ <body>
+  <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+   <div class="main-container" style="max-width: 640px; margin: 0 auto; padding: 32px 20px;">    <div class="header-card card" style="background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+     <div style="text-align: center;">
+      <div class="logo-container" style="margin-bottom: 20px;"><img id="school-logo" class="school-logo" src="https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png" alt="Logo SMK Negeri Bojonggambir" style="width: 90px; height: 90px; margin: 0 auto; display: block; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.alt='Logo tidak dapat dimuat';">
+      </div>
+      <h1 id="app-title" class="app-title" style="font-size: 32px; font-weight: 800; color: #1a202c; margin: 0 0 8px 0; letter-spacing: -0.5px;">Submit Soal PSAS</h1>
+      <p id="school-name" style="font-size: 16px; color: #718096; margin: 0; font-weight: 500;">SMK Negeri Bojonggambir</p>
+     </div>
+    </div>    <div class="form-card card" style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
+     <form id="submission-form">
+      <div style="margin-bottom: 24px;"><label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Nama Guru <span style="color: #e53e3e;">*</span></label> <input type="text" id="nama-guru" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
+      </div>
+      <div style="margin-bottom: 24px;"><label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Mata Pelajaran <span style="color: #e53e3e;">*</span></label> <input type="text" id="mata-pelajaran" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
+      </div>
+      <div style="margin-bottom: 24px;"><label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Kelas <span style="color: #e53e3e;">*</span></label> <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
+      </div>
+      <div style="margin-bottom: 24px;"><label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Jumlah Soal <span style="color: #e53e3e;">*</span></label> <input type="number" id="jumlah-soal" required min="1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
+      </div>
+      <div style="margin-bottom: 24px;"><label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Link Soal PSAS <span style="color: #e53e3e;">*</span></label> <input type="url" id="link-soal" required placeholder="https://..." class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
+      </div>
+      <div style="margin-bottom: 24px;"><label for="file-kisi-kisi" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Upload Kisi-Kisi Soal <span style="color: #e53e3e;">*</span></label>
+       <div style="position: relative;"><input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; cursor: pointer;">
+        <p id="file-name-display" style="margin: 8px 0 0 0; font-size: 13px; color: #718096; font-style: italic;">Belum ada file dipilih</p>
+       </div>
+      </div>
+      <div style="margin-bottom: 28px;"><label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Catatan (Opsional)</label> <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; resize: vertical; background: #f7fafc;"></textarea>
+      </div><button type="submit" id="submit-btn" class="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); letter-spacing: 0.3px;"> <span id="submit-text">Submit Soal</span> <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span> </button>
+     </form>     <div id="success-message" style="display: none; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;">
+      <p id="success-text" style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">✅</span> <span>Terima kasih! Soal Anda telah berhasil disubmit.</span></p>
+     </div>
+    </div>    <div style="text-align: center; margin-top: 32px; color: white; font-size: 14px; opacity: 0.95; font-weight: 500;">
+     <p style="margin: 0;">© 2024 SMK Negeri Bojonggambir</p>
+    </div>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      app_title: "Submit Soal PSAS",
+      school_name: "SMK Negeri Bojonggambir",
+      submit_button_text: "Submit Soal",
+      success_message: "Terima kasih! Soal Anda telah berhasil disubmit.",
+      background_color: "#667eea",
+      surface_color: "#ffffff",
+      text_color: "#1a202c",
+      primary_action_color: "#667eea",
+      secondary_action_color: "#764ba2",
+      font_family: "system-ui",
+      font_size: 16
+    };
     
-    @media (min-width: 641px) and (max-width: 1024px) {
-      .main-container {
-        padding: 40px 24px !important;
-      }
-      .header-card {
-        padding: 28px !important;
-      }
-      .form-card {
-        padding: 28px !important;
-      }
-    }
-    
-    @media (min-width: 1025px) {
-      .main-container {
-        max-width: 680px !important;
-      }
-    }
-    .input-field {
-      transition: all 0.3s ease;
-    }
-    .input-field:focus {
-      outline: none;
-      border-color: #667eea;
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-      transform: translateY(-1px);
-    }
-    .submit-btn {
-      transition: all 0.3s ease;
-    }
-    .submit-btn:hover:not(:disabled) {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.5);
-    }
-    .submit-btn:active:not(:disabled) {
-      transform: translateY(0);
-    }
-    .submit-btn:disabled {
-      opacity: 0.7;
-      cursor: not-allowed;
-    }
-    .info-box {
-      transition: all 0.3s ease;
-    }
-    .info-box:hover {
-      transform: translateX(4px);
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    }
-    .card {
-      animation: fadeInUp 0.6s ease-out;
-    }
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .logo-container {
-      animation: fadeIn 0.8s ease-out;
-    }
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-      to {
-        opacity: 1;
-      }
-    }
-  </style>
-  <style>@view-transition { navigation: auto; }</style>
- </head>
- <body>
-  <div class="container" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-   <div class="main-container" style="max-width: 640px; margin: 0 auto; padding: 32px 20px;"><!-- Header -->
-    <div class="header-card card" style="background: white; border-radius: 20px; padding: 32px; margin-bottom: 24px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
-     <div style="text-align: center;">
-      <div class="logo-container" style="margin-bottom: 20px;"><img id="school-logo" class="school-logo" src="https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png" alt="Logo SMK Negeri Bojonggambir" style="width: 90px; height: 90px; margin: 0 auto; display: block; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));" onerror="this.style.display='none'; this.alt='Logo tidak dapat dimuat';">
-      </div>
-      <h1 id="app-title" class="app-title" style="font-size: 32px; font-weight: 800; color: #1a202c; margin: 0 0 8px 0; letter-spacing: -0.5px;">Submit Soal PSAS</h1>
-      <p id="school-name" style="font-size: 16px; color: #718096; margin: 0; font-weight: 500;">SMK Negeri Bojonggambir</p>
-     </div>
-    </div><!-- Form -->
-    <div class="form-card card" style="background: white; border-radius: 20px; padding: 32px; box-shadow: 0 20px 60px rgba(0,0,0,0.15);">
-     <form id="submission-form">
-      <div style="margin-bottom: 24px;"><label for="nama-guru" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Nama Guru <span style="color: #e53e3e;">*</span></label> <input type="text" id="nama-guru" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
-      </div>
-      <div style="margin-bottom: 24px;"><label for="mata-pelajaran" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Mata Pelajaran <span style="color: #e53e3e;">*</span></label> <input type="text" id="mata-pelajaran" required class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
-      </div>
-      <div style="margin-bottom: 24px;"><label for="kelas" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Kelas <span style="color: #e53e3e;">*</span></label> <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
-      </div>
-      <div style="margin-bottom: 24px;"><label for="jumlah-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Jumlah Soal <span style="color: #e53e3e;">*</span></label> <input type="number" id="jumlah-soal" required min="1" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
-      </div>
-      <div style="margin-bottom: 24px;"><label for="link-soal" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Link Soal PSAS <span style="color: #e53e3e;">*</span></label> <input type="url" id="link-soal" required placeholder="https://..." class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc;">
-      </div>
-      <div style="margin-bottom: 24px;"><label for="file-kisi-kisi" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Upload Kisi-Kisi Soal <span style="color: #e53e3e;">*</span></label>
-       <div style="position: relative;"><input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; background: #f7fafc; cursor: pointer;">
-        <p id="file-name-display" style="margin: 8px 0 0 0; font-size: 13px; color: #718096; font-style: italic;">Belum ada file dipilih</p>
-       </div>
-      </div>
-      <div style="margin-bottom: 28px;"><label for="catatan" style="display: block; font-weight: 600; color: #2d3748; margin-bottom: 10px; font-size: 14px;">Catatan (Opsional)</label> <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan" class="input-field" style="width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 15px; resize: vertical; background: #f7fafc;"></textarea>
-      </div><button type="submit" id="submit-btn" class="submit-btn" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 700; cursor: pointer; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4); letter-spacing: 0.3px;"> <span id="submit-text">Submit Soal</span> <span id="loading-spinner" style="display: none;">⏳ Mengirim...</span> </button>
-     </form><!-- Success Message -->
-     <div id="success-message" style="display: none; margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #c6f6d5 0%, #9ae6b4 100%); border-radius: 12px; border-left: 4px solid #48bb78; animation: fadeInUp 0.5s ease-out;">
-      <p id="success-text" style="margin: 0; color: #22543d; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">✅</span> <span>Terima kasih! Soal Anda telah berhasil disubmit.</span></p>
-     </div>
-    </div><!-- Footer -->
-    <div style="text-align: center; margin-top: 32px; color: white; font-size: 14px; opacity: 0.95; font-weight: 500;">
-     <p style="margin: 0;">© 2024 SMK Negeri Bojonggambir</p>
-    </div>
-   </div>
-  </div>
-  <script>
-    const defaultConfig = {
-      app_title: "Submit Soal PSAS",
-      school_name: "SMK Negeri Bojonggambir",
-      submit_button_text: "Submit Soal",
-      success_message: "Terima kasih! Soal Anda telah berhasil disubmit.",
-      background_color: "#667eea",
-      surface_color: "#ffffff",
-      text_color: "#1a202c",
-      primary_action_color: "#667eea",
-      secondary_action_color: "#764ba2",
-      font_family: "system-ui",
-      font_size: 16
-    };
+    // dataHandler tidak lagi digunakan untuk submit,
+    // tapi kita biarkan jika elementSdk membutuhkannya
+    const dataHandler = {
+      onDataChanged(data) {
+        // No need to display data for write-only form
+      }
+    };
 
-    const dataHandler = {
-      onDataChanged(data) {
-        // No need to display data for write-only form
-      }
-    };
+    async function onConfigChange(config) {
+        // ... SEMUA KODE 'onConfigChange' ANDA ...
+        // (Tidak perlu diubah, jadi saya singkat di sini)
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseFontStack = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+      const fontFamily = `${customFont}, ${baseFontStack}`;
+      const baseSize = config.font_size || defaultConfig.font_size;
+      
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
 
-    async function onConfigChange(config) {
-      const customFont = config.font_family || defaultConfig.font_family;
-      const baseFontStack = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-      const fontFamily = `${customFont}, ${baseFontStack}`;
-      const baseSize = config.font_size || defaultConfig.font_size;
-      
-      const backgroundColor = config.background_color || defaultConfig.background_color;
-      const surfaceColor = config.surface_color || defaultConfig.surface_color;
-      const textColor = config.text_color || defaultConfig.text_color;
-      const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
-      const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      document.querySelector('.container').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+      
+      const cards = document.querySelectorAll('.header-card, .form-card');
+      cards.forEach(card => {
+        card.style.background = surfaceColor;
+      });
 
-      document.querySelector('.container').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
-      
-      const cards = document.querySelectorAll('.header-card, .form-card');
-      cards.forEach(card => {
-        card.style.background = surfaceColor;
-      });
+      document.getElementById('app-title').textContent = config.app_title || defaultConfig.app_title;
+      document.getElementById('app-title').style.color = textColor;
+      document.getElementById('app-title').style.fontFamily = fontFamily;
+      document.getElementById('app-title').style.fontSize = `${baseSize * 2}px`;
 
-      document.getElementById('app-title').textContent = config.app_title || defaultConfig.app_title;
-      document.getElementById('app-title').style.color = textColor;
-      document.getElementById('app-title').style.fontFamily = fontFamily;
-      document.getElementById('app-title').style.fontSize = `${baseSize * 2}px`;
+      document.getElementById('school-name').textContent = config.school_name || defaultConfig.school_name;
+      document.getElementById('school-name').style.fontFamily = fontFamily;
+      document.getElementById('school-name').style.fontSize = `${baseSize}px`;
 
-      document.getElementById('school-name').textContent = config.school_name || defaultConfig.school_name;
-      document.getElementById('school-name').style.fontFamily = fontFamily;
-      document.getElementById('school-name').style.fontSize = `${baseSize}px`;
+      document.getElementById('submit-text').textContent = config.submit_button_text || defaultConfig.submit_button_text;
+      document.getElementById('submit-btn').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
+      document.getElementById('submit-btn').style.fontFamily = fontFamily;
+      document.getElementById('submit-btn').style.fontSize = `${baseSize}px`;
 
-      document.getElementById('submit-text').textContent = config.submit_button_text || defaultConfig.submit_button_text;
-      document.getElementById('submit-btn').style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%)`;
-      document.getElementById('submit-btn').style.fontFamily = fontFamily;
-      document.getElementById('submit-btn').style.fontSize = `${baseSize}px`;
+      const successTextSpan = document.querySelector('#success-text span:last-child');
+      if (successTextSpan) {
+        successTextSpan.textContent = config.success_message || defaultConfig.success_message;
+      }
+      document.getElementById('success-text').style.fontFamily = fontFamily;
+      document.getElementById('success-text').style.fontSize = `${baseSize * 0.875}px`;
 
-      const successTextSpan = document.querySelector('#success-text span:last-child');
-      if (successTextSpan) {
-        successTextSpan.textContent = config.success_message || defaultConfig.success_message;
-      }
-      document.getElementById('success-text').style.fontFamily = fontFamily;
-      document.getElementById('success-text').style.fontSize = `${baseSize * 0.875}px`;
+      const labels = document.querySelectorAll('label');
+      labels.forEach(label => {
+        label.style.color = textColor;
+        label.style.fontFamily = fontFamily;
+  L       label.style.fontSize = `${baseSize * 0.875}px`;
+      });
 
-      const labels = document.querySelectorAll('label');
-      labels.forEach(label => {
-        label.style.color = textColor;
-        label.style.fontFamily = fontFamily;
-        label.style.fontSize = `${baseSize * 0.875}px`;
-      });
+      const inputs = document.querySelectorAll('input, textarea');
+      inputs.forEach(input => {
+        input.style.fontFamily = fontFamily;
+        input.style.fontSize = `${baseSize * 0.9375}px`;
+      });
 
-      const inputs = document.querySelectorAll('input, textarea');
-      inputs.forEach(input => {
-        input.style.fontFamily = fontFamily;
-        input.style.fontSize = `${baseSize * 0.9375}px`;
-      });
+      const links = document.querySelectorAll('.info-box a');
+      links.forEach((link, index) => {
+        link.style.fontFamily = fontFamily;
+        link.style.fontSize = `${baseSize * 0.875}px`;
+        if (index === 0) {
+          link.style.color = primaryColor;
+        } else {
+          link.style.color = secondaryColor;
+        }
+      });
 
-      const links = document.querySelectorAll('.info-box a');
-      links.forEach((link, index) => {
-        link.style.fontFamily = fontFamily;
-        link.style.fontSize = `${baseSize * 0.875}px`;
-        if (index === 0) {
-          link.style.color = primaryColor;
-        } else {
-          link.style.color = secondaryColor;
-        }
-      });
+      const infoBoxTitles = document.querySelectorAll('.info-box p');
+      infoBoxTitles.forEach(title => {
+        title.style.color = textColor;
+        title.style.fontFamily = fontFamily;
+        title.style.fontSize = `${baseSize * 0.875}px`;
+      });
+    }
 
-      const infoBoxTitles = document.querySelectorAll('.info-box p');
-      infoBoxTitles.forEach(title => {
-        title.style.color = textColor;
-        title.style.fontFamily = fontFamily;
-        title.style.fontSize = `${baseSize * 0.875}px`;
-      });
-    }
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+        // ... SEMUA KODE 'mapToCapabilities' ANDA ...
+        // (Tidak perlu diubah, jadi saya singkat di sini)
+          recolorables: [
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.surface_color || defaultConfig.surface_color,
+              set: (value) => {
+                config.surface_color = value;
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+            _ set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.primary_action_color || defaultConfig.primary_action_color,
+              set: (value) => {
+        _       config.primary_action_color = value;
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+              set: (value) => {
+                config.secondary_action_color = value;
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+          _ set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["app_title", config.app_title || defaultConfig.app_title],
+          ["school_name", config.school_name || defaultConfig.school_name],
+          ["submit_button_text", config.submit_button_text || defaultConfig.submit_button_text],
+          ["success_message", config.success_message || defaultConfig.success_message]
+        ])
+      });
+    }
 
-    if (window.elementSdk) {
-      window.elementSdk.init({
-        defaultConfig,
-        onConfigChange,
-        mapToCapabilities: (config) => ({
-          recolorables: [
-            {
-              get: () => config.background_color || defaultConfig.background_color,
-              set: (value) => {
-                config.background_color = value;
-                window.elementSdk.setConfig({ background_color: value });
-              }
-            },
-            {
-              get: () => config.surface_color || defaultConfig.surface_color,
-              set: (value) => {
-                config.surface_color = value;
-                window.elementSdk.setConfig({ surface_color: value });
-              }
-            },
-            {
-              get: () => config.text_color || defaultConfig.text_color,
-              set: (value) => {
-                config.text_color = value;
-                window.elementSdk.setConfig({ text_color: value });
-              }
-            },
-            {
-              get: () => config.primary_action_color || defaultConfig.primary_action_color,
-              set: (value) => {
-                config.primary_action_color = value;
-                window.elementSdk.setConfig({ primary_action_color: value });
-              }
-            },
-            {
-              get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
-              set: (value) => {
-                config.secondary_action_color = value;
-                window.elementSdk.setConfig({ secondary_action_color: value });
-              }
-            }
-          ],
-          borderables: [],
-          fontEditable: {
-            get: () => config.font_family || defaultConfig.font_family,
-            set: (value) => {
-              config.font_family = value;
-              window.elementSdk.setConfig({ font_family: value });
-            }
-          },
-          fontSizeable: {
-            get: () => config.font_size || defaultConfig.font_size,
-            set: (value) => {
-              config.font_size = value;
-              window.elementSdk.setConfig({ font_size: value });
-            }
-          }
-        }),
-        mapToEditPanelValues: (config) => new Map([
-          ["app_title", config.app_title || defaultConfig.app_title],
-          ["school_name", config.school_name || defaultConfig.school_name],
-          ["submit_button_text", config.submit_button_text || defaultConfig.submit_button_text],
-          ["success_message", config.success_message || defaultConfig.success_message]
-        ])
-      });
-    }
+    // ========================================================================
+    // KODE BARU DIMULAI DARI SINI
+    // ========================================================================
 
-    async function initializeApp() {
-      if (window.dataSdk) {
-        const initResult = await window.dataSdk.init(dataHandler);
-        if (!initResult.isOk) {
-          console.error("Failed to initialize data SDK");
-        }
-      }
-
-      // File input change handler
-      const fileInput = document.getElementById('file-kisi-kisi');
-      const fileNameDisplay = document.getElementById('file-name-display');
-      
-      fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          fileNameDisplay.textContent = `File dipilih: ${file.name}`;
-          fileNameDisplay.style.color = '#48bb78';
-          fileNameDisplay.style.fontWeight = '600';
-        } else {
-          fileNameDisplay.textContent = 'Belum ada file dipilih';
-          fileNameDisplay.style.color = '#718096';
-          fileNameDisplay.style.fontWeight = 'normal';
-        }
-      });
-
-      const form = document.getElementById('submission-form');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        const submitBtn = document.getElementById('submit-btn');
-        const submitText = document.getElementById('submit-text');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const successMessage = document.getElementById('success-message');
-
-        const fileInput = document.getElementById('file-kisi-kisi');
-        const file = fileInput.files[0];
-
-        if (!file) {
-          const errorDiv = document.createElement('div');
-          errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
-          errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Silakan pilih file kisi-kisi terlebih dahulu.</span></p>`;
-          form.appendChild(errorDiv);
-          setTimeout(() => errorDiv.remove(), 5000);
-          return;
-        }
-
-        submitBtn.disabled = true;
-        submitText.style.display = 'none';
-        loadingSpinner.style.display = 'inline';
-
-        const formData = {
-          nama_guru: document.getElementById('nama-guru').value,
-          mata_pelajaran: document.getElementById('mata-pelajaran').value,
-          kelas: document.getElementById('kelas').value,
-          jumlah_soal: document.getElementById('jumlah-soal').value,
-          link_soal: document.getElementById('link-soal').value,
-          nama_file_kisi_kisi: file.name,
-          catatan: document.getElementById('catatan').value,
-          timestamp: new Date().toISOString()
+    /**
+     * Fungsi helper untuk mengubah file menjadi string Base64.
+     */
+    function fileToBase64(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+          // Hasilnya: "data:[<mime-type>];base64,[<base64-data>]"
+          // Kita hanya perlu bagian base64-nya
+          resolve(reader.result.split(',')[1]); 
         };
+        reader.onerror = error => reject(error);
+      });
+    }
 
-        if (window.dataSdk) {
-          const result = await window.dataSdk.create(formData);
+    async function initializeApp() {
+      // Kita tidak lagi memerlukan dataSdk.init() untuk submit
+      /*
+      if (window.dataSdk) {
+        const initResult = await window.dataSdk.init(dataHandler);
+        if (!initResult.isOk) {
+          console.error("Failed to initialize data SDK");
+        }
+      }
+      */
 
-          if (result.isOk) {
+      // File input change handler (SAMA SEPERTI ASLI)
+      const fileInput = document.getElementById('file-kisi-kisi');
+      const fileNameDisplay = document.getElementById('file-name-display');
+      
+      fileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          fileNameDisplay.textContent = `File dipilih: ${file.name}`;
+          fileNameDisplay.style.color = '#48bb78';
+          fileNameDisplay.style.fontWeight = '600';
+        } else {
+          fileNameDisplay.textContent = 'Belum ada file dipilih';
+          fileNameDisplay.style.color = '#718096';
+          fileNameDisplay.style.fontWeight = 'normal';
+        }
+      });
+
+      // ================================================================
+      // LOGIKA SUBMIT LAMA DIGANTI TOTAL DENGAN YANG INI
+      // ================================================================
+      const form = document.getElementById('submission-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault(); // Mencegah form submit cara lama
+
+        // !!! GANTI DENGAN URL WEB APP ANDA !!!
+        const GAS_WEB_APP_URL = "URL_WEB_APP_ANDA_DARI_LANGKAH_DEPLOY"; 
+        
+        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DARI_LANGKAH_DEPLOY") {
+           alert("Peringatan: Anda belum memasukkan URL Google Apps Script Web App!");
+           const errorDiv = document.createElement('div');
+           errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
+           errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Error: URL Apps Script belum diatur di dalam kode.</span></p>`;
+           form.appendChild(errorDiv);
+           setTimeout(() => errorDiv.remove(), 5000);
+           return;
+        }
+
+        const submitBtn = document.getElementById('submit-btn');
+        const submitText = document.getElementById('submit-text');
+        const loadingSpinner = document.getElementById('loading-spinner');
+  T     const successMessage = document.getElementById('success-message');
+
+        const fileInput = document.getElementById('file-kisi-kisi');
+        const file = fileInput.files[0];
+
+        // Validasi file (sama seperti kode asli)
+        if (!file) {
+          const errorDiv = document.createElement('div');
+          errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
+          errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Silakan pilih file kisi-kisi terlebih dahulu.</span></p>`;
+          form.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 5000);
+          return;
+        }
+
+        // Tampilkan loading
+        submitBtn.disabled = true;
+        submitText.style.display = 'none';
+        loadingSpinner.style.display = 'inline';
+        
+        // Hapus pesan error/sukses sebelumnya
+        form.querySelectorAll('div[style*="animation"]').forEach(el => el.remove());
+        successMessage.style.display = 'none';
+
+        try {
+          // 1. Convert file ke Base64 (menggunakan fungsi helper)
+          const fileData = await fileToBase64(file);
+
+          // 2. Siapkan payload data dalam format JSON
+          const formData = {
+            nama_guru: document.getElementById('nama-guru').value,
+            mata_pelajaran: document.getElementById('mata-pelajaran').value,
+            kelas: document.getElementById('kelas').value,
+            jumlah_soal: document.getElementById('jumlah-soal').value,
+            link_soal: document.getElementById('link-soal').value,
+            catatan: document.getElementById('catatan').value,
+            // Info file untuk dikirim ke Apps Script
+            fileData: fileData, // Data base64
+            fileName: file.name,
+            fileMimeType: file.type,
+            nama_file_kisi_kisi: file.name
+          };
+
+          // 3. Kirim data ke Google Apps Script menggunakan fetch
+          const response = await fetch(GAS_WEB_APP_URL, {
+            method: 'POST',
+            body: JSON.stringify(formData),
+            // 'redirect: "follow"' penting karena GAS melakukan redirect
+            redirect: 'follow'
+          });
+
+          // Tunggu dan parse respons JSON dari GAS
+          const result = await response.json(); 
+
+          if (result.status === "success") {
+            // SUKSES! Tampilkan pesan (seperti kode asli)
             successMessage.style.display = 'block';
-            
-            // Open Google Drive folder in new tab for manual upload
-            setTimeout(() => {
-              window.open('https://drive.google.com/drive/folders/1FYLcIcjl4wUtcdKWw0rjT7bFROHroP-k', '_blank', 'noopener,noreferrer');
-            }, 500);
-            
             form.reset();
+            const fileNameDisplay = document.getElementById('file-name-display');
             fileNameDisplay.textContent = 'Belum ada file dipilih';
             fileNameDisplay.style.color = '#718096';
             fileNameDisplay.style.fontWeight = 'normal';
@@ -410,21 +471,28 @@
               successMessage.style.display = 'none';
             }, 8000);
           } else {
-            const errorDiv = document.createElement('div');
-            errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
-            errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Terjadi kesalahan. Silakan coba lagi.</span></p>`;
-            form.appendChild(errorDiv);
-            setTimeout(() => errorDiv.remove(), 5000);
+            // GAGAL dari sisi server
+            throw new Error(result.message || "Terjadi kesalahan pada server Apps Script.");
           }
+
+        } catch (error) {
+          // Tangani error jika fetch gagal
+          console.error('Error submitting to Apps Script:', error);
+          const errorDiv = document.createElement('div');
+          errorDiv.style.cssText = 'margin-top: 24px; padding: 18px; background: linear-gradient(135deg, #fed7d7 0%, #fc8181 100%); border-radius: 12px; border-left: 4px solid #f56565; animation: fadeInUp 0.5s ease-out;';
+          errorDiv.innerHTML = `<p style="margin: 0; color: #742a2a; font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px;"><span style="font-size: 18px;">❌</span> <span>Terjadi kesalahan. Silakan coba lagi.</span></p>`;
+          form.appendChild(errorDiv);
+          setTimeout(() => errorDiv.remove(), 5000);
+        } finally {
+          // Sembunyikan loading (apapun hasilnya)
+          submitBtn.disabled = false;
+          submitText.style.display = 'inline';
+          loadingSpinner.style.display = 'none';
         }
+      });
+    }
 
-        submitBtn.disabled = false;
-        submitText.style.display = 'inline';
-        loadingSpinner.style.display = 'none';
-      });
-    }
-
-    initializeApp();
-  </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cde6cee07eea76',t:'MTc2Mjg2NTI4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+    initializeApp();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99cde6cee07eea76',t:'MTc2Mjg2NTI4Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
