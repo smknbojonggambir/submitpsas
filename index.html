@@ -47,8 +47,8 @@
             border: 3px solid var(--secondary-color);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             
-            /* Tautan Logo Drive yang sudah diinjeksikan ID */
-            background-image: url('https://drive.google.com/uc?id=1aq_opLPAJOBcsUevHa7IS9f_sIDhOGWb');
+            /* Tautan Logo GitHub RAW yang sudah diubah */
+            background-image: url('https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png');
             background-size: cover;
             background-position: center;
         }
@@ -168,9 +168,6 @@
             <label for="namaGuru">Nama Guru (Beserta Gelar):</label>
             <input type="text" id="namaGuru" name="namaGuru" required>
 
-            <label for="waktuKelas">Tanggal & Jam Pelaksanaan (WaktuKelas):</label>
-            <input type="datetime-local" id="waktuKelas" name="waktuKelas" required>
-
             <label for="kelas">Kelas Pilihan:</label>
             <select id="kelas" name="kelas" required>
                 <option value="">Pilih Kelas</option>
@@ -211,6 +208,22 @@
             messageDiv.style.display = 'block';
             messageDiv.className = 'message';
             messageDiv.innerHTML = 'Mengirim data dan mengunggah file... **Mohon tunggu hingga selesai**';
+
+            // Mengambil data dari form, tidak termasuk waktuKelas
+            const formData = new FormData(e.target);
+            const data = {};
+            for (let [key, value] of formData.entries()) {
+                if (key !== 'waktuKelas') { // Pastikan 'waktuKelas' tidak dikirim
+                    data[key] = value;
+                }
+            }
+
+            // Memerlukan penyesuaian untuk mengirim FormData dengan file
+            // Jika ini berjalan di Google Apps Script, perubahannya mungkin lebih kompleks pada sisi .gs (script server)
+            // Untuk HTML saja, anggap script .gs akan menangani FormData yang dimodifikasi.
+            
+            // Karena fungsi .processFormSubmit(e.target) pada Apps Script mengambil semua input, 
+            // penghapusan tag input sudah cukup di sisi HTML agar data tersebut tidak terkirim.
 
             google.script.run
                 .withSuccessHandler(onSuccess)
