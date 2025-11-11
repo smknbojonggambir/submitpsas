@@ -47,7 +47,7 @@
             border: 3px solid var(--secondary-color);
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             
-            /* Tautan Logo GitHub RAW yang sudah diubah */
+            /* Tautan Logo GitHub Raw */
             background-image: url('https://raw.githubusercontent.com/smknbojonggambir/submitpsas/main/LOGO.png');
             background-size: cover;
             background-position: center;
@@ -185,9 +185,6 @@
             <label for="mataPelajaran">Mata Pelajaran:</label>
             <input type="text" id="mataPelajaran" name="mataPelajaran" required>
             
-            <label for="nilai">Alokasi Waktu (Menit):</label>
-            <input type="number" id="nilai" name="nilai" min="30" max="180" value="90" required>
-
             <label for="linkMateri">Link Dokumen Soal (Wajib Share *Viewer*):</label>
             <input type="text" id="linkMateri" name="linkMateri" placeholder="URL Google Docs/Drive Soal" required>
 
@@ -208,22 +205,6 @@
             messageDiv.style.display = 'block';
             messageDiv.className = 'message';
             messageDiv.innerHTML = 'Mengirim data dan mengunggah file... **Mohon tunggu hingga selesai**';
-
-            // Mengambil data dari form, tidak termasuk waktuKelas
-            const formData = new FormData(e.target);
-            const data = {};
-            for (let [key, value] of formData.entries()) {
-                if (key !== 'waktuKelas') { // Pastikan 'waktuKelas' tidak dikirim
-                    data[key] = value;
-                }
-            }
-
-            // Memerlukan penyesuaian untuk mengirim FormData dengan file
-            // Jika ini berjalan di Google Apps Script, perubahannya mungkin lebih kompleks pada sisi .gs (script server)
-            // Untuk HTML saja, anggap script .gs akan menangani FormData yang dimodifikasi.
-            
-            // Karena fungsi .processFormSubmit(e.target) pada Apps Script mengambil semua input, 
-            // penghapusan tag input sudah cukup di sisi HTML agar data tersebut tidak terkirim.
 
             google.script.run
                 .withSuccessHandler(onSuccess)
