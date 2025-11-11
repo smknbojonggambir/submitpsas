@@ -23,11 +23,10 @@
 <body class="bg-gradient-to-br from-indigo-500 to-purple-700">
 
   <div class="container min-h-screen p-4 sm:p-6">
-    <div class="main-container max-w-xl mx-auto py-8">
+    <div class="main-container max-w-3xl mx-auto py-8">
       
       <div class="header-card bg-white rounded-2xl p-6 sm:p-8 mb-6 shadow-2xl flex flex-col items-center">
         <img src="https://github.com/smknbojonggambir/submitpsas/blob/main/LOGO.png?raw=true" alt="Logo SMK Negeri Bojonggambir" class="w-24 h-24 mb-4 object-contain">
-        
         <h1 id="app-title-h1" class="text-2xl sm:text-3xl font-extrabold text-gray-900 text-center">
           Submit Soal PSAS
         </h1>
@@ -38,83 +37,93 @@
       
       <div class="form-card bg-white rounded-2xl p-6 sm:p-8 shadow-2xl">
         
-        <form id="submission-form" class="space-y-6">
+        <form id="submission-form">
           
-          <div>
-            <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
-              Nama Guru <span class="text-red-500">*</span>
-            </label>
-            <input type="text" id="nama-guru" required
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-          
-          <div>
-            <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
-              Mata Pelajaran <span class="text-red-500">*</span>
-            </label>
-            <input type="text" id="mata-pelajaran" required
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-          
-          <div>
-            <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
-              Kelas <span class="text-red-500">*</span>
-            </label>
-            <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-          
-          <div>
-            <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-              Jumlah Soal <span class="text-red-500">*</span>
-            </label>
-            <input type="number" id="jumlah-soal" required min="1"
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-          
-          <div>
-            <label for="link-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-              Link Soal PSAS <span class="text-red-500">*</span>
-            </label>
-            <input type="url" id="link-soal" required placeholder="https://..."
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-          
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">
-              Upload Kisi-Kisi Soal <span class="text-red-500">*</span>
-            </label>
-            <label for="file-kisi-kisi" class="relative flex w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition duration-300 ease-in-out hover:border-indigo-500 hover:bg-indigo-50 cursor-pointer">
-              <input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-              
-              <div class="text-center">
-                <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 14.25a.75.75 0 0 1 .75.75v2.25c0 .995.805 1.8 1.8 1.8h10.9c.995 0 1.8-.805 1.8-1.8V15a.75.75 0 0 1 1.5 0v2.25c0 1.83-1.47 3.3-3.3 3.3H5.55c-1.83 0-3.3-1.47-3.3-3.3V15a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                </svg>
-                <p id="file-name-display" class="mt-2 text-sm text-gray-500">
-                  <span class="font-semibold text-indigo-600">Klik untuk upload</span> atau tarik dan lepas
-                </p>
-                <p class="text-xs text-gray-500">PDF, DOC, DOCX, XLS, XLSX</p>
-              </div>
-            </label>
-          </div>
+          <div class="space-y-6 md:space-y-0 md:grid md:grid-cols-2 md:gap-6">
+            
+            <div>
+              <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
+                Nama Guru <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="nama-guru" required
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            </div>
+            
+            <div>
+              <label for="nomor-wa" class="block text-sm font-semibold text-gray-700 mb-2">
+                Nomor WhatsApp Pengirim <span class="text-red-500">*</span>
+              </label>
+              <input type="tel" id="nomor-wa" required placeholder="Contoh: 081234567890"
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+              <p class="mt-1 text-xs text-gray-500">Untuk notifikasi. Awali dengan '0' atau '62'.</p>
+            </div>
 
-          <div>
-            <label for="catatan" class="block text-sm font-semibold text-gray-700 mb-2">
-              Catatan (Opsional)
-            </label>
-            <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan"
-                      class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-vertical"></textarea>
-          </div>
-          
-          <button type="submit" id="submit-btn"
-                  class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+            <div>
+              <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
+                Mata Pelajaran <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="mata-pelajaran" required
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            </div>
+            
+            <div>
+              <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
+                Kelas <span class="text-red-500">*</span>
+              </label>
+              <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            </div>
+
+            <div>
+              <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
+                Jumlah Soal <span class="text-red-500">*</span>
+              </label>
+              <input type="number" id="jumlah-soal" required min="1"
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            </div>
+
+            <div>
+              <label for="link-soal" class="block text-sm font-semibold text-gray-700 mb-2">
+                Link Soal PSAS <span class="text-red-500">*</span>
+              </label>
+              <input type="url" id="link-soal" required placeholder="https://..."
+                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+            </div>
+            
+            <div class="md:col-span-2">
+              <label class="block text-sm font-semibold text-gray-700 mb-2">
+                Upload Kisi-Kisi Soal <span class="text-red-500">*</span>
+              </label>
+              <label for="file-kisi-kisi" class="relative flex w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition duration-300 ease-in-out hover:border-indigo-500 hover:bg-indigo-50 cursor-pointer">
+                <input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                <div class="text-center">
+                  <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 14.25a.75.75 0 0 1 .75.75v2.25c0 .995.805 1.8 1.8 1.8h10.9c.995 0 1.8-.805 1.8-1.8V15a.75.75 0 0 1 1.5 0v2.25c0 1.83-1.47 3.3-3.3 3.3H5.55c-1.83 0-3.3-1.47-3.3-3.3V15a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                  </svg>
+                  <p id="file-name-display" class="mt-2 text-sm text-gray-500">
+                    <span class="font-semibold text-indigo-600">Klik untuk upload</span> atau tarik dan lepas
+                  </p>
+                  <p class="text-xs text-gray-500">PDF, DOC, DOCX, XLS, XLSX</p>
+                </div>
+              </label>
+            </div>
+
+            <div class="md:col-span-2">
+              <label for="catatan" class="block text-sm font-semibold text-gray-700 mb-2">
+                Catatan (Opsional)
+              </label>
+              <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan"
+                        class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-vertical"></textarea>
+            </div>
+
+          </div> <button type="submit" id="submit-btn"
+                  class="w-full p-4 mt-6 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
             <span id="submit-text">Submit Soal</span>
             <span id="loading-spinner" class="hidden">⏳ Mengirim...</span>
           </button>
         </form>
         
-        <div id="alert-container"></div> 
+        <div id="alert-container" class="mt-6"></div> 
 
       </div>
       
@@ -137,11 +146,8 @@
         document.getElementById('app-title-h1').textContent = conf.app_title;
         document.getElementById('school-name-p').textContent = conf.school_name;
         document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${conf.school_name}`;
-        
         const submitText = document.getElementById('submit-text');
         if (submitText) submitText.textContent = conf.submit_button_text;
-
-        // successTextSpan tidak lagi digunakan karena alertContainer lebih dinamis
     }
     if (window.elementSdk) {
         window.elementSdk.init(defaultConfig, dataHandler, onConfigChange);
@@ -150,12 +156,8 @@
     }
     // --- END SDK CONFIG ---
 
-    // --- Konfigurasi WhatsApp ---
-    // !!! GANTI DENGAN NOMOR WHATSAPP ADMIN ANDA !!!
-    const ADMIN_WHATSAPP_NUMBER = "6281234567890"; // Contoh: Ganti dengan nomor WhatsApp admin yang valid (tanpa + atau 0 di depan)
-
     /**
-     * Fungsi helper untuk mengubah file menjadi string Base64. (Tidak berubah)
+     * Fungsi helper untuk mengubah file menjadi string Base64.
      */
     function fileToBase64(file) {
       return new Promise((resolve, reject) => {
@@ -170,63 +172,69 @@
 
     /**
      * Fungsi untuk menampilkan pesan error/success kustom di dalam form
-     * Menggunakan alertContainer baru.
      */
     function showCustomAlert(message, type = 'error') {
         const alertContainer = document.getElementById('alert-container');
-        // Hapus alert lama jika ada
-        alertContainer.innerHTML = '';
-
+        alertContainer.innerHTML = ''; // Hapus alert lama
         const alertDiv = document.createElement('div');
         alertDiv.setAttribute('data-alert', 'custom');
         
         let alertClasses, icon, textClasses;
-
         if (type === 'error') {
-            alertClasses = 'mt-6 p-4 bg-red-100 border-l-4 border-red-500 rounded-lg animate-fadeInUp';
+            alertClasses = 'p-4 bg-red-100 border-l-4 border-red-500 rounded-lg animate-fadeInUp';
             icon = '❌';
             textClasses = 'font-semibold text-red-800 flex items-center gap-2';
         } else { // type === 'success'
-            alertClasses = 'mt-6 p-4 bg-green-100 border-l-4 border-green-500 rounded-lg animate-fadeInUp';
+            alertClasses = 'p-4 bg-green-100 border-l-4 border-green-500 rounded-lg animate-fadeInUp';
             icon = '✅';
             textClasses = 'font-semibold text-green-800 flex items-center gap-2';
         }
-
         alertDiv.className = alertClasses;
         alertDiv.innerHTML = `<p class="${textClasses}"><span class="text-lg">${icon}</span> <span>${message}</span></p>`;
-        
         alertContainer.appendChild(alertDiv);
-
+        
         // Hapus otomatis setelah beberapa detik
-        setTimeout(() => alertDiv.remove(), 6000);
+        setTimeout(() => alertDiv.remove(), 8000);
     }
-
+    
     /**
-     * Fungsi untuk mengirim pesan WhatsApp otomatis.
+     * Fungsi BARU untuk mengirim pesan WhatsApp ke PENGIRIM.
      */
-    function sendWhatsAppMessage(formData) {
-        if (!ADMIN_WHATSAPP_NUMBER || ADMIN_WHATSAPP_NUMBER === "6281234567890") {
-            console.warn("ADMIN_WHATSAPP_NUMBER belum diatur. Pesan WhatsApp tidak akan dikirim.");
-            showCustomAlert("Peringatan: Nomor WhatsApp admin belum diatur!", "error");
-            return;
+    function sendWhatsAppMessageToSender(formData) {
+        let senderNumber = formData.nomor_wa.trim();
+        
+        // Validasi dan format nomor WA
+        if (!senderNumber) {
+            console.warn("Nomor WA pengirim tidak diisi.");
+            return; // Jangan lakukan apa-apa jika nomor kosong
+        }
+        
+        // Hapus spasi, strip, atau tanda plus
+        senderNumber = senderNumber.replace(/[\s-+\.]/g, '');
+        
+        // Ubah format 08... menjadi 628...
+        if (senderNumber.startsWith('0')) {
+            senderNumber = '62' + senderNumber.substring(1);
+        }
+        
+        // Jika sudah 62, biarkan. Jika tidak 0 atau 62, anggap nomor lokal (tambahkan 62)
+        if (!senderNumber.startsWith('62')) {
+            senderNumber = '62' + senderNumber;
         }
 
-        const guru = formData.nama_guru || "Guru Tanpa Nama";
-        const mapel = formData.mata_pelajaran || "Mata Pelajaran Tidak Diketahui";
-        const kelas = formData.kelas || "Kelas Tidak Diketahui";
-        const linkSoal = formData.link_soal || "Tidak ada link soal";
-        const fileName = formData.nama_file_kisi_kisi || "Tidak ada file kisi-kisi";
+        const guru = formData.nama_guru || "Guru Yth";
+        const mapel = formData.mata_pelajaran || "Mapel";
 
         const message = encodeURIComponent(
-            `Halo Admin,\n\nSaya ${guru} telah mengirimkan soal PSAS:\n` +
-            `- Mata Pelajaran: ${mapel}\n` +
-            `- Kelas: ${kelas}\n` +
-            `- Link Soal: ${linkSoal}\n` +
-            `- File Kisi-Kisi: ${fileName}\n\n` +
-            `Mohon untuk segera dicek. Terima kasih!`
+            `Halo, *${guru}*.\n\n` +
+            `Terima kasih! Kami telah menerima data submit soal Anda untuk:\n` +
+            `- Mata Pelajaran: *${mapel}*\n` +
+            `- Kelas: *${formData.kelas}*\n` +
+            `- File Kisi-Kisi: *${formData.fileName}*\n\n` +
+            `Ini adalah notifikasi otomatis. Mohon tidak membalas pesan ini.`
         );
 
-        const whatsappUrl = `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${message}`;
+        const whatsappUrl = `https://wa.me/${senderNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
     }
 
@@ -235,16 +243,13 @@
       // --- Handler untuk Input File Kustom ---
       const fileInput = document.getElementById('file-kisi-kisi');
       const fileNameDisplay = document.getElementById('file-name-display');
-      // Simpan teks HTML default dari area dropzone
       const defaultFileTextHTML = fileNameDisplay.innerHTML; 
 
       fileInput.addEventListener('change', (e) => {
         const file = e.target.files[0];
         if (file) {
-          // Tampilkan nama file dengan warna hijau
           fileNameDisplay.innerHTML = `<span class="font-semibold text-green-600">File dipilih: ${file.name}</span>`;
         } else {
-          // Kembalikan ke teks HTML default jika dibatalkan
           fileNameDisplay.innerHTML = defaultFileTextHTML;
         }
       });
@@ -257,10 +262,9 @@
         // !!! GANTI DENGAN URL WEB APP ANDA YANG SUDAH DI-DEPLOY !!!
         const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec";
 
-        // Cek placeholder (sudah benar)
-        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DARI_LANGKAH_DEPLOY" || GAS_WEB_APP_URL.includes("AKfycb...")) {
+        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DA..." || GAS_WEB_APP_URL.includes("AKfycb...")) {
              if (GAS_WEB_APP_URL !== "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec") {
-                alert("Peringatan: URL Google Apps Script belum diatur di file HTML!");
+                alert("Peringatan: URL Google Apps Script belum diatur!");
                 showCustomAlert("Error: URL Apps Script belum diatur di dalam kode.", 'error');
                 return;
             }
@@ -270,7 +274,6 @@
         const submitText = document.getElementById('submit-text');
         const loadingSpinner = document.getElementById('loading-spinner');
         const alertContainer = document.getElementById('alert-container');
-
         const file = fileInput.files[0];
 
         if (!file) {
@@ -282,15 +285,14 @@
         submitBtn.disabled = true;
         submitText.classList.add('hidden');
         loadingSpinner.classList.remove('hidden');
-        
-        // Hapus pesan error/sukses sebelumnya
         alertContainer.innerHTML = '';
 
-        let formDataToSend = {}; // Simpan data form untuk WhatsApp
+        let formDataToSend = {}; 
         try {
           const fileData = await fileToBase64(file);
-          formDataToSend = { // Isi objek ini
+          formDataToSend = { 
             nama_guru: document.getElementById('nama-guru').value,
+            nomor_wa: document.getElementById('nomor-wa').value, // TAMBAHKAN NOMOR WA
             mata_pelajaran: document.getElementById('mata-pelajaran').value,
             kelas: document.getElementById('kelas').value,
             jumlah_soal: document.getElementById('jumlah-soal').value,
@@ -304,33 +306,29 @@
 
           const response = await fetch(GAS_WEB_APP_URL, {
             method: 'POST',
-            body: JSON.stringify(formDataToSend), // Kirim formDataToSend
+            body: JSON.stringify(formDataToSend), 
             redirect: 'follow',
           });
 
           if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) {
-              let errorDetail = await response.text(); // Coba baca teks untuk detail lebih lanjut
-              throw new Error(`Server merespons dengan error. (Status: ${response.status}) Detail: ${errorDetail.substring(0, 100)}...`);
+              let errorDetail = await response.text(); 
+              throw new Error(`Server merespons dengan error. (Status: ${response.status})`);
           }
 
           const result = await response.json();
 
           if (result.status === "success") {
-            // Tampilkan pesan sukses dari server atau default
             const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
             const newMessage = result.message || config.success_message;
             showCustomAlert(newMessage, 'success');
             
-            form.reset();
+            // --- KIRIM PESAN WHATSAPP KE PENGIRIM ---
+            sendWhatsAppMessageToSender(formDataToSend);
             
-            // Reset tampilan nama file ke default
+            form.reset();
             fileNameDisplay.innerHTML = defaultFileTextHTML;
             
-            // --- KIRIM PESAN WHATSAPP ---
-            sendWhatsAppMessage(formDataToSend);
-            
           } else {
-            // Jika server merespons dengan status "error"
             throw new Error(result.message || "Terjadi kesalahan pada server.");
           }
 
@@ -338,7 +336,6 @@
           console.error('Error submitting to Apps Script:', error);
           showCustomAlert(error.message, 'error');
         } finally {
-          // --- Selesai proses loading ---
           submitBtn.disabled = false;
           submitText.classList.remove('hidden');
           loadingSpinner.classList.add('hidden');
@@ -346,7 +343,6 @@
       });
     }
 
-    // Jalankan aplikasi saat dokumen siap
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initializeApp);
     } else {
