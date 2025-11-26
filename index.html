@@ -1,312 +1,365 @@
 <!doctype html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Submit Soal PSAS</title>
-  <script src="/_sdk/element_sdk.js"></script>
-  <script src="/_sdk/data_sdk.js"></script>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fadeInUp {
-      animation: fadeInUp 0.5s ease-out;
-    }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Soal PSAS</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="/_sdk/data_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeInUp {
+            animation: fadeInUp 0.5s ease-out;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        }
+    </style>
 </head>
 <body class="bg-gradient-to-br from-indigo-500 to-purple-700">
 
-  <div class="container min-h-screen p-4 sm:p-6">
-    <div class="main-container max-w-4xl mx-auto py-8">
-      
-      <div class="header-card bg-white rounded-2xl p-6 sm:p-8 mb-6 shadow-2xl flex flex-col items-center">
-        <img src="https://github.com/smknbojonggambir/submitpsas/blob/main/LOGO.png?raw=true" alt="Logo SMK Negeri Bojonggambir" class="w-24 h-24 mb-4 object-contain">
-        <h1 id="app-title-h1" class="text-2xl sm:text-3xl font-extrabold text-gray-900 text-center">
-          Submit Soal PSAS
-        </h1>
-        <p id="school-name-p" class="text-base text-gray-500 text-center mt-2">
-          SMK Negeri Bojonggambir
-        </p>
-      </div>
-      
-      <div class="form-card bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
-        
-        <div>
-          <h2 class="text-xl font-bold text-gray-800">Petunjuk Pengisian</h2>
-          <p class="mt-3 text-gray-600">
-            Harap isi semua data dengan benar dan teliti. Pastikan tidak ada kesalahan penulisan, terutama pada link soal.
-          </p>
-          <ul class="mt-6 space-y-3 list-disc list-inside text-gray-600">
-            <li>
-              <span class="font-semibold text-gray-700">Periksa Link Soal:</span>
-              Pastikan link (URL) soal sudah dapat diakses oleh siapa saja yang memiliki link.
-            </li>
-            <li>
-              <span class="font-semibold text-gray-700">File Word:</span>
-              File yang di-upload akan otomatis tersimpan di Google Drive panitia.
-            </li>
-          </ul>
-        </div>
-
-        <hr class="my-6 border-gray-200">
-
-        <form id="submission-form" class="space-y-6">
+    <div class="container min-h-screen p-4 sm:p-6">
+        <div class="main-container max-w-4xl mx-auto py-8">
             
-          <div>
-            <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
-              Nama Guru <span class="text-red-500">*</span>
-            </label>
-            <input type="text" id="nama-guru" required
-                   class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
-                Mata Pelajaran <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="mata-pelajaran" required
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-            
-            <div>
-              <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
-                Kelas <span class="text-red-500">*</span>
-              </label>
-              <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-                Jumlah Soal <span class="text-red-500">*</span>
-              </label>
-              <input type="number" id="jumlah-soal" required min="1"
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-
-            <div>
-              <label for="link-soal" class="block text-sm font-semibold text-gray-700 mb-2">
-                Link Soal PSAS <span class="text-red-500">*</span>
-              </label>
-              <input type="url" id="link-soal" required placeholder="https://..."
-                     class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
-            </div>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">
-              Upload Soal <span class="text-red-500">*</span>
-            </label>
-            <label for="file-kisi-kisi" class="relative flex w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition duration-300 ease-in-out hover:border-indigo-500 hover:bg-indigo-50 cursor-pointer">
-              <input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
-              <div class="text-center">
-                <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 14.25a.75.75 0 0 1 .75.75v2.25c0 .995.805 1.8 1.8 1.8h10.9c.995 0 1.8-.805 1.8-1.8V15a.75.75 0 0 1 1.5 0v2.25c0 1.83-1.47 3.3-3.3 3.3H5.55c-1.83 0-3.3-1.47-3.3-3.3V15a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
-                </svg>
-                <p id="file-name-display" class="mt-2 text-sm text-gray-500">
-                  <span class="font-semibold text-indigo-600">Klik untuk upload</span> atau tarik dan lepas
+            <div class="header-card bg-white rounded-2xl p-6 sm:p-8 mb-6 shadow-2xl flex flex-col items-center">
+                <img src="https://github.com/smknbojonggambir/submitpsas/blob/main/LOGO.png?raw=true" alt="Logo SMK Negeri Bojonggambir" class="w-24 h-24 mb-4 object-contain">
+                <h1 id="app-title-h1" class="text-2xl sm:text-3xl font-extrabold text-gray-900 text-center">
+                    Submit Soal PSAS
+                </h1>
+                <p id="school-name-p" class="text-base text-gray-500 text-center mt-2">
+                    SMK Negeri Bojonggambir
                 </p>
-                <p class="text-xs text-gray-500">PDF, DOC, DOCX, XLS, XLSX</p>
-              </div>
-            </label>
-          </div>
+            </div>
+            
+            <div class="form-card bg-white rounded-2xl shadow-2xl p-6 sm:p-8">
+                
+                <div>
+                    <h2 class="text-xl font-bold text-gray-800">Petunjuk Pengisian</h2>
+                    <p class="mt-3 text-gray-600">
+                        Harap isi semua data dengan benar dan teliti. Pastikan tidak ada kesalahan penulisan, terutama pada link soal.
+                    </p>
+                    <ul class="mt-6 space-y-3 list-disc list-inside text-gray-600">
+                        <li>
+                            <span class="font-semibold text-gray-700">Periksa Link Soal:</span>
+                            Pastikan link (URL) soal sudah dapat diakses oleh siapa saja yang memiliki link.
+                        </li>
+                        <li>
+                            <span class="font-semibold text-gray-700">File Upload:</span>
+                            File yang di-upload (Kisi-Kisi dan Soal Word) akan otomatis tersimpan di Google Drive panitia.
+                        </li>
+                    </ul>
+                </div>
 
-          <div>
-            <label for="catatan" class="block text-sm font-semibold text-gray-700 mb-2">
-              Catatan (Opsional)
-            </label>
-            <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan"
-                      class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-vertical"></textarea>
-          </div>
+                <hr class="my-6 border-gray-200">
 
-          <button type="submit" id="submit-btn"
-                  class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
-            <span id="submit-text">Submit Soal</span>
-            <span id="loading-spinner" class="hidden">⏳ Mengirim...</span>
-          </button>
-        </form>
-        
-        <div id="alert-container" class="mt-6"></div> 
-      </div>
-      
-      <div class="text-center mt-8">
-        <p id="footer-text" class="text-sm text-white/90 font-medium">
-          © 2024 SMK Negeri Bojonggambir
-        </p>
-      </div>
-      
+                <form id="submission-form" class="space-y-6">
+                    
+                    <div>
+                        <label for="nama-guru" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Nama Guru <span class="text-red-500">*</span>
+                        </label>
+                        <input type="text" id="nama-guru" required
+                            class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="mata-pelajaran" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Mata Pelajaran <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="mata-pelajaran" required
+                                class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+                        </div>
+                        
+                        <div>
+                            <label for="kelas" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Kelas <span class="text-red-500">*</span>
+                            </label>
+                            <input type="text" id="kelas" required placeholder="Contoh: X TKJ 1"
+                                class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="jumlah-soal" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Jumlah Soal <span class="text-red-500">*</span>
+                            </label>
+                            <input type="number" id="jumlah-soal" required min="1"
+                                class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+                        </div>
+
+                        <div>
+                            <label for="link-google-form" class="block text-sm font-semibold text-gray-700 mb-2">
+                                Link Google Form Soal PSAS <span class="text-red-500">*</span>
+                            </label>
+                            <input type="url" id="link-google-form" required placeholder="https://forms.gle/..."
+                                class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Upload Kisi-Kisi <span class="text-red-500">*</span>
+                            </label>
+                            <label for="file-kisi-kisi" class="relative flex w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition duration-300 ease-in-out hover:border-indigo-500 hover:bg-indigo-50 cursor-pointer">
+                                <input type="file" id="file-kisi-kisi" required accept=".pdf,.doc,.docx,.xls,.xlsx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <div class="text-center">
+                                    <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 14.25a.75.75 0 0 1 .75.75v2.25c0 .995.805 1.8 1.8 1.8h10.9c.995 0 1.8-.805 1.8-1.8V15a.75.75 0 0 1 1.5 0v2.25c0 1.83-1.47 3.3-3.3 3.3H5.55c-1.83 0-3.3-1.47-3.3-3.3V15a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                    <p id="file-name-display-kisi-kisi" class="mt-2 text-sm text-gray-500">
+                                        <span class="font-semibold text-indigo-600">Klik untuk upload</span> atau tarik dan lepas
+                                    </p>
+                                    <p class="text-xs text-gray-500">PDF, DOC, DOCX, XLS, XLSX</p>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-700 mb-2">
+                                Upload Soal Word <span class="text-red-500">*</span>
+                            </label>
+                            <label for="file-soal-word" class="relative flex w-full flex-col items-center justify-center rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 p-6 transition duration-300 ease-in-out hover:border-indigo-500 hover:bg-indigo-50 cursor-pointer">
+                                <input type="file" id="file-soal-word" required accept=".doc,.docx" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer">
+                                <div class="text-center">
+                                    <svg class="mx-auto h-10 w-10 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd" d="M11.47 2.47a.75.75 0 0 1 1.06 0l4.5 4.5a.75.75 0 0 1-1.06 1.06l-3.22-3.22V16.5a.75.75 0 0 1-1.5 0V4.81L8.03 8.03a.75.75 0 0 1-1.06-1.06l4.5-4.5ZM3 14.25a.75.75 0 0 1 .75.75v2.25c0 .995.805 1.8 1.8 1.8h10.9c.995 0 1.8-.805 1.8-1.8V15a.75.75 0 0 1 1.5 0v2.25c0 1.83-1.47 3.3-3.3 3.3H5.55c-1.83 0-3.3-1.47-3.3-3.3V15a.75.75 0 0 1 .75-.75Z" clip-rule="evenodd" />
+                                    </svg>
+                                    <p id="file-name-display-soal-word" class="mt-2 text-sm text-gray-500">
+                                        <span class="font-semibold text-indigo-600">Klik untuk upload</span> atau tarik dan lepas
+                                    </p>
+                                    <p class="text-xs text-gray-500">DOC, DOCX</p>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="catatan" class="block text-sm font-semibold text-gray-700 mb-2">
+                            Catatan (Opsional)
+                        </label>
+                        <textarea id="catatan" rows="3" placeholder="Tambahkan catatan jika diperlukan"
+                                    class="input-field w-full px-4 py-3 border-2 border-gray-200 rounded-xl bg-gray-50 transition duration-300 ease-in-out focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 resize-vertical"></textarea>
+                    </div>
+
+                    <button type="submit" id="submit-btn"
+                            class="w-full p-4 bg-gradient-to-r from-indigo-600 to-purple-700 text-white rounded-xl font-bold text-base shadow-lg shadow-indigo-500/40 hover:shadow-xl hover:shadow-indigo-500/60 transform hover:-translate-y-0.5 transition-all duration-300 ease-in-out cursor-pointer disabled:opacity-70 disabled:cursor-not-allowed">
+                        <span id="submit-text">Submit Soal</span>
+                        <span id="loading-spinner" class="hidden">⏳ Mengirim...</span>
+                    </button>
+                </form>
+                
+                <div id="alert-container" class="mt-6"></div> 
+            </div>
+            
+            <div class="text-center mt-8">
+                <p id="footer-text" class="text-sm text-white/90 font-medium">
+                    © 2024 SMK Negeri Bojonggambir
+                </p>
+            </div>
+            
+        </div>
     </div>
-  </div>
 
-  <script>
-    // --- SDK CONFIG (Tidak berubah) ---
-    const defaultConfig = { app_title: "Submit Soal PSAS", school_name: "SMK Negeri Bojonggambir", submit_button_text: "Submit Soal", success_message: "Terima kasih! Soal Anda telah berhasil disubmit.", background_color: "#667eea", surface_color: "#ffffff", text_color: "#1a202c", primary_action_color: "#667eea", secondary_action_color: "#764ba2", font_family: "system-ui", font_size: 16 };
-    const dataHandler = { onDataChanged(data) {} };
-    async function onConfigChange(config) {
-        const conf = config || defaultConfig;
-        document.title = conf.app_title;
-        document.getElementById('app-title-h1').textContent = conf.app_title;
-        document.getElementById('school-name-p').textContent = conf.school_name;
-        document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${conf.school_name}`;
-        const submitText = document.getElementById('submit-text');
-        if (submitText) submitText.textContent = conf.submit_button_text;
-    }
-    if (window.elementSdk) {
-        window.elementSdk.init(defaultConfig, dataHandler, onConfigChange);
-    } else {
-        onConfigChange(defaultConfig);
-    }
-    // --- END SDK CONFIG ---
-
-    function fileToBase64(file) {
-      return new Promise((resolve, reject) => {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          resolve(reader.result.split(',')[1]); 
-        };
-        reader.onerror = error => reject(error);
-      });
-    }
-
-    function showCustomAlert(message, type = 'error') {
-        const alertContainer = document.getElementById('alert-container');
-        alertContainer.innerHTML = '';
-        const alertDiv = document.createElement('div');
-        alertDiv.setAttribute('data-alert', 'custom');
-        
-        let alertClasses, icon, textClasses;
-        if (type === 'error') {
-            alertClasses = 'p-4 bg-red-100 border-l-4 border-red-500 rounded-lg animate-fadeInUp';
-            icon = '❌';
-            textClasses = 'font-semibold text-red-800 flex items-center gap-2';
-        } else {
-            alertClasses = 'p-4 bg-green-100 border-l-4 border-green-500 rounded-lg animate-fadeInUp';
-            icon = '✅';
-            textClasses = 'font-semibold text-green-800 flex items-center gap-2';
+    <script>
+        // --- SDK CONFIG (Tidak berubah) ---
+        const defaultConfig = { app_title: "Submit Soal PSAS", school_name: "SMK Negeri Bojonggambir", submit_button_text: "Submit Soal", success_message: "Terima kasih! Soal Anda telah berhasil disubmit.", background_color: "#667eea", surface_color: "#ffffff", text_color: "#1a202c", primary_action_color: "#667eea", secondary_action_color: "#764ba2", font_family: "system-ui", font_size: 16 };
+        const dataHandler = { onDataChanged(data) {} };
+        async function onConfigChange(config) {
+            const conf = config || defaultConfig;
+            document.title = conf.app_title;
+            document.getElementById('app-title-h1').textContent = conf.app_title;
+            document.getElementById('school-name-p').textContent = conf.school_name;
+            document.getElementById('footer-text').textContent = `© ${new Date().getFullYear()} ${conf.school_name}`;
+            const submitText = document.getElementById('submit-text');
+            if (submitText) submitText.textContent = conf.submit_button_text;
         }
-        alertDiv.className = alertClasses;
-        alertDiv.innerHTML = `<p class="${textClasses}"><span class="text-lg">${icon}</span> <span>${message}</span></p>`;
-        alertContainer.appendChild(alertDiv);
-        
-        setTimeout(() => alertDiv.remove(), 8000);
-    }
-    
-    // FUNGSI WHATSAPP TELAH DIHAPUS
-    
-    async function initializeApp() {
-      const fileInput = document.getElementById('file-kisi-kisi');
-      const fileNameDisplay = document.getElementById('file-name-display');
-      const defaultFileTextHTML = fileNameDisplay.innerHTML; 
-
-      fileInput.addEventListener('change', (e) => {
-        const file = e.target.files[0];
-        if (file) {
-          fileNameDisplay.innerHTML = `<span class="font-semibold text-green-600">File dipilih: ${file.name}</span>`;
+        if (window.elementSdk) {
+            window.elementSdk.init(defaultConfig, dataHandler, onConfigChange);
         } else {
-          fileNameDisplay.innerHTML = defaultFileTextHTML;
+            onConfigChange(defaultConfig);
         }
-      });
+        // --- END SDK CONFIG ---
 
-      const form = document.getElementById('submission-form');
-      form.addEventListener('submit', async (e) => {
-        e.preventDefault();
+        function fileToBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = () => {
+                    // Hanya mengambil bagian Base64, setelah koma
+                    resolve(reader.result.split(',')[1]); 
+                };
+                reader.onerror = error => reject(error);
+            });
+        }
 
-        const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec";
-
-        if (GAS_WEB_APP_URL === "URL_WEB_APP_ANDA_DA..." || GAS_WEB_APP_URL.includes("AKfycb...")) {
-             if (GAS_WEB_APP_URL !== "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec") {
-                alert("Peringatan: URL Google Apps Script belum diatur!");
-                showCustomAlert("Error: URL Apps Script belum diatur di dalam kode.", 'error');
-                return;
+        function showCustomAlert(message, type = 'error') {
+            const alertContainer = document.getElementById('alert-container');
+            alertContainer.innerHTML = '';
+            const alertDiv = document.createElement('div');
+            alertDiv.setAttribute('data-alert', 'custom');
+            
+            let alertClasses, icon, textClasses;
+            if (type === 'error') {
+                alertClasses = 'p-4 bg-red-100 border-l-4 border-red-500 rounded-lg animate-fadeInUp';
+                icon = '❌';
+                textClasses = 'font-semibold text-red-800 flex items-center gap-2';
+            } else {
+                alertClasses = 'p-4 bg-green-100 border-l-4 border-green-500 rounded-lg animate-fadeInUp';
+                icon = '✅';
+                textClasses = 'font-semibold text-green-800 flex items-center gap-2';
             }
+            alertDiv.className = alertClasses;
+            alertDiv.innerHTML = `<p class="${textClasses}"><span class="text-lg">${icon}</span> <span>${message}</span></p>`;
+            alertContainer.appendChild(alertDiv);
+            
+            setTimeout(() => alertDiv.remove(), 8000);
+        }
+        
+        async function initializeApp() {
+            // Referensi untuk Upload Kisi-Kisi (Input pertama)
+            const fileInputKisiKisi = document.getElementById('file-kisi-kisi');
+            const fileNameDisplayKisiKisi = document.getElementById('file-name-display-kisi-kisi');
+            const defaultFileKisiKisiTextHTML = fileNameDisplayKisiKisi.innerHTML;
+
+            // Referensi untuk Upload Soal Word (Input kedua - BARU)
+            const fileInputSoalWord = document.getElementById('file-soal-word');
+            const fileNameDisplaySoalWord = document.getElementById('file-name-display-soal-word');
+            const defaultFileSoalWordTextHTML = fileNameDisplaySoalWord.innerHTML;
+
+            // Event Listener untuk Kisi-Kisi
+            fileInputKisiKisi.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    fileNameDisplayKisiKisi.innerHTML = `<span class="font-semibold text-green-600">File dipilih: ${file.name}</span>`;
+                } else {
+                    fileNameDisplayKisiKisi.innerHTML = defaultFileKisiKisiTextHTML;
+                }
+            });
+
+            // Event Listener untuk Soal Word
+            fileInputSoalWord.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) {
+                    fileNameDisplaySoalWord.innerHTML = `<span class="font-semibold text-green-600">File dipilih: ${file.name}</span>`;
+                } else {
+                    fileNameDisplaySoalWord.innerHTML = defaultFileSoalWordTextHTML;
+                }
+            });
+
+            const form = document.getElementById('submission-form');
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                // PASTIKAN URL ANDA SUDAH BENAR
+                const GAS_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec";
+
+                // Pengecekan URL GAS
+                if (GAS_WEB_APP_URL.includes("AKfycb...")) {
+                    if (GAS_WEB_APP_URL !== "https://script.google.com/macros/s/AKfycbzSusum5mnfwshvHswsXjiDxx4a9kJ6UOesgCkwa3VnsAgU8XrJanJ1bMJn1eD96zqB/exec") {
+                        showCustomAlert("Error: URL Apps Script belum diatur atau masih menggunakan placeholder.", 'error');
+                        return;
+                    }
+                }
+
+                const submitBtn = document.getElementById('submit-btn');
+                const submitText = document.getElementById('submit-text');
+                const loadingSpinner = document.getElementById('loading-spinner');
+                const alertContainer = document.getElementById('alert-container');
+
+                const fileKisiKisi = fileInputKisiKisi.files[0];
+                const fileSoalWord = fileInputSoalWord.files[0];
+
+                if (!fileKisiKisi) {
+                    showCustomAlert('Silakan pilih file Kisi-Kisi terlebih dahulu.', 'error');
+                    return;
+                }
+                if (!fileSoalWord) {
+                    showCustomAlert('Silakan pilih file Soal Word terlebih dahulu.', 'error');
+                    return;
+                }
+
+                submitBtn.disabled = true;
+                submitText.classList.add('hidden');
+                loadingSpinner.classList.remove('hidden');
+                alertContainer.innerHTML = '';
+
+                let formDataToSend = {};
+                try {
+                    // Konversi kedua file ke Base64
+                    const fileDataKisiKisi = await fileToBase64(fileKisiKisi);
+                    const fileDataSoalWord = await fileToBase64(fileSoalWord);
+
+                    // Data yang dikirim ke Google Apps Script
+                    formDataToSend = {
+                        nama_guru: document.getElementById('nama-guru').value,
+                        mata_pelajaran: document.getElementById('mata-pelajaran').value,
+                        kelas: document.getElementById('kelas').value,
+                        jumlah_soal: document.getElementById('jumlah-soal').value,
+                        // Menggunakan 'link_soal' agar kompatibel dengan Apps Script lama, tetapi mengambil dari ID input yang baru
+                        link_soal: document.getElementById('link-google-form').value, 
+                        catatan: document.getElementById('catatan').value,
+
+                        // DATA UNTUK FILE KISI-KISI
+                        fileData_kisi_kisi: fileDataKisiKisi,
+                        fileName_kisi_kisi: fileKisiKisi.name,
+                        fileMimeType_kisi_kisi: fileKisiKisi.type,
+
+                        // DATA UNTUK FILE SOAL WORD
+                        fileData_soal_word: fileDataSoalWord,
+                        fileName_soal_word: fileSoalWord.name,
+                        fileMimeType_soal_word: fileSoalWord.type,
+                    };
+
+                    const response = await fetch(GAS_WEB_APP_URL, {
+                        method: 'POST',
+                        body: JSON.stringify(formDataToSend), 
+                        redirect: 'follow',
+                    });
+
+                    if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) {
+                        throw new Error(`Server merespons dengan status error: ${response.status}.`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.status === "success") {
+                        const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
+                        const newMessage = result.message || config.success_message;
+                        showCustomAlert(newMessage, 'success');
+                        
+                        // Reset form dan display file
+                        form.reset();
+                        fileNameDisplayKisiKisi.innerHTML = defaultFileKisiKisiTextHTML;
+                        fileNameDisplaySoalWord.innerHTML = defaultFileSoalWordTextHTML;
+                        
+                    } else {
+                        throw new Error(result.message || "Terjadi kesalahan pada server Apps Script.");
+                    }
+
+                } catch (error) {
+                    console.error('Error submitting to Apps Script:', error);
+                    showCustomAlert(`Gagal kirim data: ${error.message}`, 'error');
+                } finally {
+                    submitBtn.disabled = false;
+                    submitText.classList.remove('hidden');
+                    loadingSpinner.classList.add('hidden');
+                }
+            });
         }
 
-        const submitBtn = document.getElementById('submit-btn');
-        const submitText = document.getElementById('submit-text');
-        const loadingSpinner = document.getElementById('loading-spinner');
-        const alertContainer = document.getElementById('alert-container');
-        const file = fileInput.files[0];
-
-        if (!file) {
-          showCustomAlert('Silakan pilih file kisi-kisi terlebih dahulu.', 'error');
-          return;
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializeApp);
+        } else {
+            initializeApp();
         }
-
-        submitBtn.disabled = true;
-        submitText.classList.add('hidden');
-        loadingSpinner.classList.remove('hidden');
-        alertContainer.innerHTML = '';
-
-        let formDataToSend = {}; 
-        try {
-          const fileData = await fileToBase64(file);
-          formDataToSend = { 
-            nama_guru: document.getElementById('nama-guru').value,
-            // 'nomor_wa' TELAH DIHAPUS
-            mata_pelajaran: document.getElementById('mata-pelajaran').value,
-            kelas: document.getElementById('kelas').value,
-            jumlah_soal: document.getElementById('jumlah-soal').value,
-            link_soal: document.getElementById('link-soal').value,
-            catatan: document.getElementById('catatan').value,
-            fileData: fileData,
-            fileName: file.name,
-            fileMimeType: file.type,
-            nama_file_kisi_kisi: file.name
-          };
-
-          const response = await fetch(GAS_WEB_APP_URL, {
-            method: 'POST',
-            body: JSON.stringify(formDataToSend), 
-            redirect: 'follow',
-          });
-
-          if (!response.ok || !response.headers.get('content-type')?.includes('application/json')) {
-              let errorDetail = await response.text(); 
-              throw new Error(`Server merespons dengan error. (Status: ${response.status})`);
-          }
-
-          const result = await response.json();
-
-          if (result.status === "success") {
-            const config = window.elementSdk ? window.elementSdk.config : defaultConfig;
-            const newMessage = result.message || config.success_message;
-            showCustomAlert(newMessage, 'success');
-            
-            // PANGGILAN FUNGSI WHATSAPP TELAH DIHAPUS
-            
-            form.reset();
-            fileNameDisplay.innerHTML = defaultFileTextHTML;
-            
-          } else {
-            throw new Error(result.message || "Terjadi kesalahan pada server.");
-          }
-
-        } catch (error) {
-          console.error('Error submitting to Apps Script:', error);
-          showCustomAlert(error.message, 'error');
-        } finally {
-          submitBtn.disabled = false;
-          submitText.classList.remove('hidden');
-          loadingSpinner.classList.add('hidden');
-        }
-      });
-    }
-
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initializeApp);
-    } else {
-        initializeApp();
-    }
-  </script>
+    </script>
 </body>
 </html>
